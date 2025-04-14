@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>مرحبا بك في موقعنا</title>
+  <meta charset="UTF-8">
+  <title>الرئيسية</title>
   <style>
     body {
-      background: linear-gradient(to right, #1f1c2c, #928dab);
-      font-family: 'Arial', sans-serif;
+      background-color: #101010;
       color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    nav {
+      background: #222;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 10px;
+      text-decoration: none;
     }
     h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      color: #ff0;
     }
     p {
       font-size: 1.2rem;
@@ -26,7 +29,20 @@
   </style>
 </head>
 <body>
-  <h1>مرحبًا بك!</h1>
-  <p>هذا الموقع من إنجاز Taibi Mouayed — لمتابعتنا على إنستغرام <a href="https://www.instagram.com/railux.0" target="_blank" style="color: #f0f;">اضغط هنا</a></p>
+
+  <!-- شريط التنقل -->
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="login.html">تسجيل الدخول</a>
+    <a href="signup.html">إنشاء حساب</a>
+    <a href="price.html">الأسعار</a>
+    <a href="exchange.html">بيع/شراء</a>
+    <a href="terms.html">الشروط</a>
+  </nav>
+
+  <!-- باقي محتوى الصفحة -->
+  <h1>مرحبًا بك في الموقع</h1>
+  <p>هذا هو موقعك.</p>
+
 </body>
 </html>
