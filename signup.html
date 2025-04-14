@@ -1,41 +1,65 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>إنشاء حساب</title>
   <style>
     body {
-      background: #222;
+      background-color: #101010;
       color: white;
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: Arial, sans-serif;
+      padding: 20px;
     }
-    input {
+    nav {
+      background: #222;
       padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
       margin: 10px;
-      width: 250px;
+      text-decoration: none;
+    }
+    h1 {
+      color: #ff0;
+    }
+    input[type="text"], input[type="password"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: #333;
+      color: white;
+      border: 1px solid #555;
     }
     button {
-      padding: 10px 20px;
-      background: #00f;
-      color: white;
+      background: #ff0;
+      padding: 10px;
       border: none;
-      cursor: pointer;
+      width: 100%;
+      color: #101010;
     }
   </style>
 </head>
 <body>
-  <h2>إنشاء حساب</h2>
+
+  <!-- شريط التنقل -->
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="login.html">تسجيل الدخول</a>
+    <a href="signup.html">إنشاء حساب</a>
+    <a href="price.html">الأسعار</a>
+    <a href="exchange.html">بيع/شراء</a>
+    <a href="terms.html">الشروط</a>
+  </nav>
+
+  <!-- محتوى صفحة إنشاء حساب -->
+  <h1>إنشاء حساب جديد</h1>
   <form>
-    <input type="text" placeholder="الاسم الكامل" required><br>
-    <input type="email" placeholder="البريد الإلكتروني" required><br>
-    <input type="tel" placeholder="رقم الهاتف" required><br>
-    <input type="password" placeholder="كلمة السر" required><br>
-    <button type="submit">إنشاء</button>
+    <input type="text" placeholder="الاسم الكامل" required>
+    <input type="email" placeholder="البريد الإلكتروني" required>
+    <input type="password" placeholder="كلمة المرور" required>
+    <button type="submit">إنشاء الحساب</button>
   </form>
+
 </body>
 </html>
