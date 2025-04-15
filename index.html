@@ -4,44 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Taibi Exchange</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
     <div class="header-container">
-      <img src="https://flagcdn.com/w320/dz.png" alt="علم الجزائر" class="dz-flag">
-      <h1>Taibi Exchange</h1>
-      <div class="menu">
-        <button class="menu-toggle">☰</button>
-        <div class="dropdown-menu">
-          <a href="#">الشراء</a>
-          <a href="#">البيع</a>
-          <a href="#">السعر الحالي</a>
-          <a href="#">شراء خدمات</a>
-        </div>
+      <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg" alt="علم الجزائر" />
+        <h1>Taibi Exchange</h1>
+      </div>
+      <div class="menu-toggle">⋮</div>
+      <div class="dropdown-menu">
+        <a href="#">الشراء</a>
+        <a href="#">البيع</a>
+        <a href="#">رؤية السعر</a>
+        <a href="#">شراء خدمات</a>
+        <a href="terms.html">شروط الخدمة</a>
       </div>
     </div>
   </header>
 
-  <section class="hero">
-    <h2>مرحبًا بك في Taibi Exchange</h2>
-    <p>منصة آمنة وسريعة لبيع وشراء USDT في الجزائر</p>
-    <select id="language-selector">
-      <option value="ar">العربية</option>
-      <option value="fr">Français</option>
-      <option value="en">English</option>
-    </select>
-  </section>
+  <main>
+    <section class="hero">
+      <h2>مرحبا بك في Taibi Exchange</h2>
+      <p>منصة آمنة وسريعة لبيع وشراء USDT في الجزائر</p>
+
+      <div class="auth-buttons">
+        <button>تسجيل الدخول</button>
+        <button>إنشاء حساب</button>
+      </div>
+
+      <select id="language-selector">
+        <option value="ar">العربية</option>
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+      </select>
+    </section>
+  </main>
 
   <footer>
-    <p>مطور من قبل TAIBI MOUAYED | تواصل معنا عبر</p>
+    <p>صُنع بكل فخر من طرف Taibi Mouayed</p>
     <p>
-      <a href="mailto:mouydtaibi3@gmail.com">mouydtaibi3@gmail.com</a> |
-      <a href="https://instagram.com/railux.0" target="_blank">Instagram</a> |
-      <a href="https://t.me/M499k" target="_blank">Telegram</a>
+      للتواصل:
+      <a href="mailto:mouydtaibi3@gmail.com">البريد الإلكتروني</a> |
+      <a href="https://www.instagram.com/railux.0">Instagram</a> |
+      <a href="https://t.me/M499k">Telegram</a>
     </p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
