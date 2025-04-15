@@ -1,48 +1,47 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>الرئيسية</title>
-  <style>
-    body {
-      background-color: #101010;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    nav {
-      background: #222;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 10px;
-      text-decoration: none;
-    }
-    h1 {
-      color: #ff0;
-    }
-    p {
-      font-size: 1.2rem;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Taibi Exchange</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+  <header>
+    <div class="header-container">
+      <img src="https://flagcdn.com/w320/dz.png" alt="علم الجزائر" class="dz-flag">
+      <h1>Taibi Exchange</h1>
+      <div class="menu">
+        <button class="menu-toggle">☰</button>
+        <div class="dropdown-menu">
+          <a href="#">الشراء</a>
+          <a href="#">البيع</a>
+          <a href="#">السعر الحالي</a>
+          <a href="#">شراء خدمات</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <!-- شريط التنقل -->
-  <nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="login.html">تسجيل الدخول</a>
-    <a href="signup.html">إنشاء حساب</a>
-    <a href="price.html">الأسعار</a>
-    <a href="exchange.html">بيع/شراء</a>
-    <a href="terms.html">الشروط</a>
-  </nav>
+  <section class="hero">
+    <h2>مرحبًا بك في Taibi Exchange</h2>
+    <p>منصة آمنة وسريعة لبيع وشراء USDT في الجزائر</p>
+    <select id="language-selector">
+      <option value="ar">العربية</option>
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+    </select>
+  </section>
 
-  <!-- باقي محتوى الصفحة -->
-  <h1>مرحبًا بك في الموقع</h1>
-  <p>هذا هو موقعك.</p>
+  <footer>
+    <p>مطور من قبل TAIBI MOUAYED | تواصل معنا عبر</p>
+    <p>
+      <a href="mailto:mouydtaibi3@gmail.com">mouydtaibi3@gmail.com</a> |
+      <a href="https://instagram.com/railux.0" target="_blank">Instagram</a> |
+      <a href="https://t.me/M499k" target="_blank">Telegram</a>
+    </p>
+  </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
