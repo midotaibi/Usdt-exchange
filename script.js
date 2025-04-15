@@ -1,23 +1,15 @@
-// فتح وإغلاق القائمة الثلاثية
-const toggleBtn = document.querySelector('.menu-toggle');
-const dropdownMenu = document.querySelector('.dropdown-menu');
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
 
-toggleBtn.addEventListener('click', () => {
-  dropdownMenu.style.display = dropdownMenu.style.display === 'flex' ? 'none' : 'flex';
-});
-
-// تغيير اللغة
-const languageSelector = document.getElementById('language-selector');
-
-if (languageSelector) {
-  languageSelector.addEventListener('change', function () {
-    const selectedLang = this.value;
-    alert('تم اختيار اللغة: ' + selectedLang + ' (سيتم دعم الترجمة قريباً)');
-    // هنا يمكنك لاحقاً تغيير المحتوى حسب اللغة
+  menuToggle.addEventListener("click", function () {
+    dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
   });
-}
 
-// إشعار بسيط للمستقبل
-window.addEventListener('load', () => {
-  console.log("مرحبًا بك في Taibi Exchange - واجهة جاهزة للتطوير!");
+  const languageSelector = document.getElementById("language-selector");
+  languageSelector.addEventListener("change", function () {
+    const selectedLang = languageSelector.value;
+    alert("سيتم تغيير اللغة إلى: " + selectedLang);
+    // يمكنك مستقبلاً ترجمة المحتوى تلقائياً هنا حسب اللغة
+  });
 });
