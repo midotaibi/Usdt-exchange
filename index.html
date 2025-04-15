@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>👑 إمبراطورية MOUAYED TAIBI | تبادل USDT</title>
+    <title>منصة MOUAYED TAIBI للتبادل الرقمي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* النظام الملكي للتصميم */
+        /* النظام الأساسي */
         :root {
-            --imperial-blue: #0a0a2a;
-            --royal-gold: #D4AF37;
-            --dark-velvet: #1a1a2e;
-            --emerald: #2ecc71;
-            --ruby: #e74c3c;
-            --sapphire: #3498db;
-        }
-        
-        @font-face {
-            font-family: 'RoyalFont';
-            src: url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+            --primary: #1a1a2e;
+            --secondary: #0f3460;
+            --accent: #4361ee;
+            --light: #f8f9fa;
+            --dark: #121212;
+            --success: #4cc9f0;
+            --warning: #ffbe0b;
+            --danger: #f72585;
         }
         
         * {
@@ -29,331 +26,261 @@
         }
         
         body {
-            background: var(--imperial-blue);
-            color: white;
-            min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 25%),
-                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 25%);
-            overflow-x: hidden;
+            background-color: #f5f7fa;
+            color: #333;
         }
         
-        /* نظام بوابة الدخول */
-        .imperial-gate {
+        /* صفحة التسجيل */
+        .auth-container {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+        }
+        
+        .auth-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop') no-repeat center/cover;
+            opacity: 0.1;
+        }
+        
+        .auth-box {
             width: 100%;
             max-width: 500px;
-            background: rgba(10, 10, 42, 0.92);
-            border: 1px solid var(--royal-gold);
-            border-radius: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: auto;
             padding: 40px;
-            margin: 5% auto;
-            box-shadow: 
-                0 0 30px rgba(212, 175, 55, 0.25),
-                inset 0 0 20px rgba(212, 175, 55, 0.15);
-            backdrop-filter: blur(8px);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 1;
         }
         
-        .imperial-gate:hover {
-            transform: translateY(-5px);
-            box-shadow: 
-                0 10px 40px rgba(212, 175, 55, 0.35),
-                inset 0 0 25px rgba(212, 175, 55, 0.2);
-        }
-        
-        .imperial-logo {
+        .auth-header {
             text-align: center;
             margin-bottom: 30px;
         }
         
-        .imperial-logo h1 {
-            font-size: 2.5rem;
-            color: var(--royal-gold);
-            text-shadow: 
-                0 0 10px rgba(212, 175, 55, 0.7),
-                0 0 20px rgba(212, 175, 55, 0.4);
-            position: relative;
-            display: inline-block;
+        .auth-header img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+        
+        .auth-header h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
             margin-bottom: 10px;
         }
         
-        .imperial-logo h1::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 3px;
-            background: linear-gradient(
-                90deg,
-                transparent 0%,
-                var(--royal-gold) 20%,
-                var(--royal-gold) 80%,
-                transparent 100%
-            );
-            border-radius: 3px;
+        .auth-header p {
+            color: #666;
+            font-size: 1rem;
         }
         
-        .imperial-logo p {
-            color: rgba(255,255,255,0.8);
-            font-size: 1.1rem;
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
         }
         
-        /* حقول الإدخال الملكية */
-        .imperial-input {
-            margin-bottom: 25px;
+        .auth-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #777;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
         }
         
-        .imperial-input label {
+        .auth-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: var(--royal-gold);
+            color: #555;
             font-weight: 500;
         }
         
-        .imperial-input input {
+        .form-group input {
             width: 100%;
-            padding: 14px 20px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 1rem;
-            color: white;
             transition: all 0.3s;
         }
         
-        .imperial-input input:focus {
-            border-color: var(--royal-gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        .form-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
             outline: none;
-            background: rgba(255,255,255,0.12);
         }
         
-        /* أزرار القصر */
-        .royal-btn {
+        .auth-btn {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(
-                135deg,
-                var(--royal-gold),
-                #c9a227
-            );
-            color: var(--imperial-blue);
+            padding: 12px;
+            background: var(--accent);
+            color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
+            border-radius: 6px;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
             margin-top: 10px;
-            box-shadow: 
-                0 4px 15px rgba(212, 175, 55, 0.3),
-                0 1px 3px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
         }
         
-        .royal-btn::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255,255,255,0.3) 0%,
-                rgba(255,255,255,0) 60%
-            );
-            transform: rotate(30deg);
-            transition: all 0.3s;
+        .auth-btn:hover {
+            background: #3a56d5;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
         }
         
-        .royal-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 7px 20px rgba(212, 175, 55, 0.4),
-                0 2px 5px rgba(0,0,0,0.1);
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9rem;
         }
         
-        .royal-btn:hover::after {
-            left: 100%;
+        .auth-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
         }
         
-        /* العرش الرقمي (لوحة التحكم) */
-        .digital-throne {
+        /* لوحة التحكم */
+        .dashboard {
             display: none;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
             position: fixed;
             top: 0;
             right: 0;
             bottom: 0;
-            width: 280px;
-            background: linear-gradient(
-                135deg,
-                rgba(26, 26, 46, 0.98) 0%,
-                rgba(10, 10, 42, 0.98) 100%
-            );
-            border-left: 3px solid var(--royal-gold);
-            box-shadow: 
-                5px 0 25px rgba(0, 0, 0, 0.5),
-                inset 0 0 15px rgba(0,0,0,0.3);
             padding: 20px;
-            z-index: 1000;
-            overflow-y: auto;
         }
         
-        .throne-header {
+        .sidebar-header {
             text-align: center;
             padding: 20px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
         }
         
-        .royal-avatar {
-            width: 100px;
-            height: 100px;
+        .sidebar-header img {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--royal-gold);
-            margin: 0 auto 15px;
-            box-shadow: 
-                0 0 20px rgba(212, 175, 55, 0.3),
-                inset 0 0 10px rgba(0,0,0,0.2);
-            cursor: pointer;
-            transition: all 0.3s;
+            border: 3px solid var(--accent);
+            margin-bottom: 15px;
         }
         
-        .royal-avatar:hover {
-            transform: scale(1.05);
-            box-shadow: 
-                0 0 25px rgba(212, 175, 55, 0.4),
-                inset 0 0 15px rgba(0,0,0,0.3);
-        }
-        
-        .royal-name {
-            color: var(--royal-gold);
-            font-size: 1.3rem;
+        .sidebar-header h3 {
+            color: var(--dark);
             margin-bottom: 5px;
-            font-weight: bold;
         }
         
-        .royal-title {
-            color: rgba(255,255,255,0.7);
+        .sidebar-header p {
+            color: #666;
             font-size: 0.9rem;
-            font-style: italic;
         }
         
-        /* صولجان التنقل */
-        .royal-scepter {
+        .sidebar-menu {
             list-style: none;
-            margin-top: 30px;
         }
         
-        .royal-scepter li {
+        .sidebar-menu li {
             margin-bottom: 10px;
         }
         
-        .royal-scepter a {
+        .sidebar-menu a {
             display: flex;
             align-items: center;
             padding: 12px 15px;
-            color: rgba(255,255,255,0.8);
+            color: #555;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 6px;
             transition: all 0.3s;
-            font-size: 1rem;
-            background: rgba(212, 175, 55, 0.05);
         }
         
-        .royal-scepter a:hover,
-        .royal-scepter a.active {
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--royal-gold);
-            transform: translateX(-5px);
-            box-shadow: 
-                2px 0 10px rgba(0,0,0,0.2),
-                inset 3px 0 0 var(--royal-gold);
+        .sidebar-menu a:hover, 
+        .sidebar-menu a.active {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--accent);
         }
         
-        .royal-scepter i {
+        .sidebar-menu i {
             margin-left: 10px;
             font-size: 1.1rem;
-            width: 25px;
-            text-align: center;
         }
         
-        /* قاعة العرش (المحتوى الرئيسي) */
-        .throne-hall {
-            display: none;
+        .main-content {
             margin-right: 280px;
             padding: 30px;
+            background: #f5f7fa;
             min-height: 100vh;
-            background: rgba(10, 10, 42, 0.6);
         }
         
-        /* تاج الشريط العلوي */
-        .royal-crown {
-            background: rgba(26, 26, 46, 0.9);
+        .navbar {
+            background: white;
             padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 900;
-            backdrop-filter: blur(5px);
+            margin-bottom: 30px;
         }
         
-        .crown-title {
-            font-size: 1.5rem;
-            color: var(--royal-gold);
+        .search-box {
             display: flex;
             align-items: center;
-        }
-        
-        .crown-title i {
-            margin-left: 10px;
-        }
-        
-        .royal-search {
-            display: flex;
-            align-items: center;
-            background: rgba(255,255,255,0.1);
+            background: #f5f7fa;
             padding: 8px 15px;
             border-radius: 30px;
             width: 300px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            transition: all 0.3s;
         }
         
-        .royal-search:focus-within {
-            border-color: var(--royal-gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-        }
-        
-        .royal-search input {
+        .search-box input {
             border: none;
             background: transparent;
             width: 100%;
             padding: 5px;
             outline: none;
-            color: white;
         }
         
-        .royal-search i {
-            color: rgba(255,255,255,0.7);
-            margin-left: 10px;
-        }
-        
-        .royal-actions {
+        .user-actions {
             display: flex;
             align-items: center;
         }
         
-        .royal-notification,
-        .royal-logout {
+        .notification-btn, 
+        .logout-btn {
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -363,93 +290,72 @@
             margin-right: 10px;
             cursor: pointer;
             transition: all 0.3s;
-            position: relative;
         }
         
-        .royal-notification {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--royal-gold);
+        .notification-btn {
+            background: #f5f7fa;
+            color: #555;
         }
         
-        .royal-notification:hover {
-            background: rgba(212, 175, 55, 0.2);
+        .notification-btn:hover {
+            background: #e9ecef;
         }
         
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            background: var(--ruby);
+        .logout-btn {
+            background: var(--danger);
             color: white;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
         }
         
-        .royal-logout {
-            background: rgba(231, 76, 60, 0.2);
-            color: var(--ruby);
+        .logout-btn:hover {
+            background: #d91a6a;
         }
         
-        .royal-logout:hover {
-            background: rgba(231, 76, 60, 0.3);
+        .welcome-card {
+            background: linear-gradient(135deg, var(--accent), #4cc9f0);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
         }
         
-        /* جوائز الإمبراطورية (البطاقات) */
-        .imperial-treasures {
+        .welcome-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .welcome-card p {
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .stats-cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
-            margin: 30px 0;
+            margin-bottom: 30px;
         }
         
-        .imperial-card {
-            background: rgba(26, 26, 46, 0.7);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 12px;
+        .stat-card {
+            background: white;
             padding: 20px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
         }
         
-        .imperial-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(212, 175, 55, 0.05) 0%,
-                transparent 50%,
-                rgba(212, 175, 55, 0.05) 100%
-            );
-            pointer-events: none;
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
         
-        .imperial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.3),
-                0 0 15px rgba(212, 175, 55, 0.3);
-            border-color: var(--royal-gold);
-        }
-        
-        .treasure-header {
+        .stat-card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
         }
         
-        .treasure-icon {
+        .stat-card-icon {
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -457,559 +363,318 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--royal-gold);
         }
         
-        .treasure-value {
-            font-size: 2rem;
+        .stat-card.primary .stat-card-icon {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--accent);
+        }
+        
+        .stat-card.success .stat-card-icon {
+            background: rgba(76, 201, 240, 0.1);
+            color: var(--success);
+        }
+        
+        .stat-card.warning .stat-card-icon {
+            background: rgba(255, 190, 11, 0.1);
+            color: var(--warning);
+        }
+        
+        .stat-card.danger .stat-card-icon {
+            background: rgba(247, 37, 133, 0.1);
+            color: var(--danger);
+        }
+        
+        .stat-card-value {
+            font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 5px;
-            color: var(--royal-gold);
         }
         
-        .treasure-title {
-            color: rgba(255,255,255,0.7);
+        .stat-card-title {
+            color: #666;
             font-size: 0.9rem;
         }
         
-        /* سجلات الإمبراطورية (الجداول) */
-        .imperial-records {
-            background: rgba(26, 26, 46, 0.7);
-            border-radius: 12px;
+        .recent-transactions {
+            background: white;
+            border-radius: 10px;
             padding: 20px;
-            margin-top: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .records-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .records-title {
+        .section-title {
             font-size: 1.3rem;
-            color: var(--royal-gold);
+            margin-bottom: 20px;
+            color: var(--dark);
             display: flex;
             align-items: center;
         }
         
-        .records-title i {
+        .section-title i {
             margin-left: 10px;
+            color: var(--accent);
         }
         
-        .view-all {
-            color: var(--royal-gold);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        
-        .view-all:hover {
-            text-decoration: underline;
-        }
-        
-        .records-table {
+        .transaction-table {
             width: 100%;
             border-collapse: collapse;
         }
         
-        .records-table th {
+        .transaction-table th {
             text-align: right;
-            padding: 15px;
-            background: rgba(0,0,0,0.2);
-            color: var(--royal-gold);
+            padding: 12px 15px;
+            background: #f8f9fa;
+            color: #555;
             font-weight: 500;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
         
-        .records-table td {
-            padding: 15px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        .transaction-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
         }
         
-        .records-table tr:last-child td {
+        .transaction-table tr:last-child td {
             border-bottom: none;
         }
         
-        .records-table tr:hover {
-            background: rgba(212, 175, 55, 0.05);
-        }
-        
-        .record-status {
+        .transaction-status {
             display: inline-block;
-            padding: 5px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 500;
         }
         
-        .status-success {
-            background: rgba(46, 204, 113, 0.1);
-            color: var(--emerald);
+        .status-completed {
+            background: rgba(76, 201, 240, 0.1);
+            color: var(--success);
         }
         
         .status-pending {
-            background: rgba(241, 196, 15, 0.1);
-            color: #f1c40f;
+            background: rgba(255, 190, 11, 0.1);
+            color: var(--warning);
         }
         
         .status-failed {
-            background: rgba(231, 76, 60, 0.1);
-            color: var(--ruby);
+            background: rgba(247, 37, 133, 0.1);
+            color: var(--danger);
         }
         
-        .record-amount {
-            font-weight: bold;
-        }
-        
-        .record-details {
-            color: var(--royal-gold);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .record-details:hover {
-            text-decoration: underline;
-        }
-        
-        /* جوهرة التبادل السريع */
-        .exchange-jewel {
-            display: none;
+        /* زر التبادل السريع */
+        .quick-exchange {
             position: fixed;
             bottom: 30px;
             left: 30px;
-            background: linear-gradient(
-                135deg,
-                var(--royal-gold),
-                #c9a227
-            );
-            color: var(--imperial-blue);
+            background: var(--accent);
+            color: white;
             padding: 15px 25px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            box-shadow: 
-                0 5px 25px rgba(212, 175, 55, 0.6),
-                0 0 15px rgba(212, 175, 55, 0.4);
-            z-index: 999;
+            box-shadow: 0 5px 20px rgba(67, 97, 238, 0.3);
+            z-index: 99;
+            display: flex;
+            align-items: center;
             transition: all 0.3s;
-            animation: jewel-glow 3s infinite alternate;
         }
         
-        @keyframes jewel-glow {
-            0% { box-shadow: 0 5px 25px rgba(212, 175, 55, 0.6); }
-            100% { box-shadow: 0 5px 35px rgba(212, 175, 55, 0.8); }
-        }
-        
-        .exchange-jewel:hover {
+        .quick-exchange:hover {
             transform: translateY(-3px);
-            box-shadow: 
-                0 8px 30px rgba(212, 175, 55, 0.7),
-                0 0 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
         }
         
-        .exchange-jewel i {
+        .quick-exchange i {
             margin-left: 8px;
         }
         
-        /* نافذة التبادل */
-        .exchange-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1001;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-        
-        .exchange-content {
-            background: linear-gradient(
-                135deg,
-                rgba(26, 26, 46, 0.95),
-                rgba(10, 10, 42, 0.95)
-            );
-            width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 
-                0 0 40px rgba(212, 175, 55, 0.3),
-                0 0 0 1px var(--royal-gold);
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            animation: modal-appear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        @keyframes modal-appear {
-            from { opacity: 0; transform: translateY(50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        
-        .exchange-header {
-            background: linear-gradient(
-                90deg,
-                rgba(212, 175, 55, 0.2),
-                rgba(212, 175, 55, 0.1)
-            );
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        
-        .exchange-header h3 {
-            color: var(--royal-gold);
-            font-size: 1.5rem;
-        }
-        
-        .close-exchange {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(212, 175, 55, 0.2);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .close-exchange:hover {
-            background: rgba(212, 175, 55, 0.3);
-            transform: rotate(90deg);
-        }
-        
-        .exchange-body {
-            padding: 30px;
-        }
-        
-        .exchange-form .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .exchange-form label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--royal-gold);
-            font-weight: 500;
-        }
-        
-        .exchange-form select,
-        .exchange-form input {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 8px;
-            color: white;
-            transition: all 0.3s;
-        }
-        
-        .exchange-form select:focus,
-        .exchange-form input:focus {
-            border-color: var(--royal-gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-            outline: none;
-        }
-        
-        .exchange-rate {
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 8px;
-            border: 1px dashed var(--royal-gold);
-        }
-        
-        .exchange-rate-value {
-            font-size: 1.5rem;
-            color: var(--royal-gold);
-            font-weight: bold;
-        }
-        
-        .exchange-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-        
-        /* التصميم المتجاوب */
-        @media (max-width: 1200px) {
-            .throne-hall {
-                margin-right: 0;
-                padding-left: 300px;
-            }
-        }
-        
+        /* Responsive Design */
         @media (max-width: 992px) {
-            .digital-throne {
+            .sidebar {
                 transform: translateX(100%);
-                transition: all 0.3s ease;
+                width: 300px;
             }
             
-            .digital-throne.active {
+            .sidebar.active {
                 transform: translateX(0);
             }
             
-            .throne-hall {
-                padding-left: 0;
+            .main-content {
+                margin-right: 0;
             }
             
-            .royal-search {
-                width: 200px;
+            .navbar-toggle {
+                display: block;
             }
         }
         
         @media (max-width: 768px) {
-            .imperial-gate {
-                margin: 10% auto;
-                padding: 30px;
+            .auth-box {
+                padding: 30px 20px;
+                margin: 20px;
             }
             
-            .imperial-treasures {
+            .stats-cards {
                 grid-template-columns: 1fr;
             }
             
-            .royal-crown {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .royal-search {
-                width: 100%;
-                margin: 15px 0;
-            }
-            
-            .exchange-jewel {
+            .quick-exchange {
                 left: 15px;
                 bottom: 15px;
                 padding: 12px 20px;
                 font-size: 0.9rem;
             }
         }
-        
-        @media (max-width: 576px) {
-            .imperial-gate {
-                padding: 25px;
-                margin: 15% auto;
-                width: 95%;
-            }
-            
-            .imperial-logo h1 {
-                font-size: 2rem;
-            }
-            
-            .exchange-content {
-                width: 95%;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- بوابة الدخول الإمبراطورية -->
-    <div class="imperial-gate" id="loginGate">
-        <div class="imperial-logo">
-            <h1>MOUAYED TAIBI</h1>
-            <p>إمبراطورية التبادل الآمن للعملات الرقمية</p>
-        </div>
-        
-        <form id="imperialLogin">
-            <div class="imperial-input">
-                <label for="royalUsername">اسم المستخدم</label>
-                <input type="text" id="royalUsername" placeholder="أدخل اسمك الإمبراطوري" required>
+    <!-- نظام المصادقة -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-bg"></div>
+        <div class="auth-box">
+            <div class="auth-header">
+                <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT Logo">
+                <h1>منصة MOUAYED TAIBI</h1>
+                <p>نظام آمن لتبادل العملات الرقمية</p>
             </div>
             
-            <div class="imperial-input">
-                <label for="royalPassword">كلمة المرور</label>
-                <input type="password" id="royalPassword" placeholder="أدخل كلمة السر الملكية" required>
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">تسجيل الدخول</div>
+                <div class="auth-tab" data-tab="register">إنشاء حساب</div>
             </div>
             
-            <button type="submit" class="royal-btn">
-                دخول القصر الملكي <i class="fas fa-crown"></i>
-            </button>
-        </form>
-        
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="#" style="color: var(--royal-gold); text-decoration: none; font-size: 0.9rem;">
-                نسيت كلمة المرور؟ <i class="fas fa-key"></i>
-            </a>
-            <span style="margin: 0 10px; color: rgba(255,255,255,0.3);">|</span>
-            <a href="#" style="color: var(--royal-gold); text-decoration: none; font-size: 0.9rem;">
-                إنشاء حساب جديد <i class="fas fa-user-plus"></i>
-            </a>
+            <!-- نموذج تسجيل الدخول -->
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">كلمة المرور</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                
+                <button type="submit" class="auth-btn">تسجيل الدخول</button>
+                
+                <div class="auth-footer">
+                    <a href="#" id="forgotPassword">نسيت كلمة المرور؟</a>
+                </div>
+            </form>
+            
+            <!-- نموذج إنشاء حساب -->
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">الاسم الكامل</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerEmail">البريد الإلكتروني</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerPhone">رقم الهاتف</label>
+                    <input type="tel" id="registerPhone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerPassword">كلمة المرور</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerConfirm">تأكيد كلمة المرور</label>
+                    <input type="password" id="registerConfirm" required>
+                </div>
+                
+                <button type="submit" class="auth-btn">إنشاء حساب</button>
+                
+                <div class="auth-footer">
+                    <p>بالإنشاء حسابك فإنك توافق على <a href="#">الشروط والأحكام</a></p>
+                </div>
+            </form>
         </div>
     </div>
     
-    <!-- العرش الرقمي (الشريط الجانبي) -->
-    <div class="digital-throne" id="digitalThrone">
-        <div class="throne-header">
-            <img src="https://ui-avatars.com/api/?name=M+TAIBI&background=D4AF37&color=0a0a2a&size=120&font-size=0.5&bold=true" class="royal-avatar" id="royalAvatar" alt="صورة الإمبراطور">
-            <h3 class="royal-name">MOUAYED TAIBI</h3>
-            <p class="royal-title">إمبراطور التبادل الرقمي</p>
+    <!-- لوحة التحكم -->
+    <div class="dashboard" id="dashboard">
+        <!-- الشريط الجانبي -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://ui-avatars.com/api/?name=M+TAIBI&background=4361ee&color=fff" alt="Profile">
+                <h3>MOUAYED TAIBI</h3>
+                <p>عضو منذ 15 يونيو 2023</p>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="#"><i class="fas fa-exchange-alt"></i> التبادلات</a></li>
+                <li><a href="#"><i class="fas fa-wallet"></i> المحفظة</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> التحليلات</a></li>
+                <li><a href="#"><i class="fas fa-user"></i> الملف الشخصي</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> الإعدادات</a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i> المساعدة</a></li>
+            </ul>
         </div>
         
-        <ul class="royal-scepter">
-            <li><a href="#" class="active"><i class="fas fa-home"></i> لوحة التحكم</a></li>
-            <li><a href="#"><i class="fas fa-exchange-alt"></i> التبادلات</a></li>
-            <li><a href="#"><i class="fas fa-wallet"></i> المحفظة</a></li>
-            <li><a href="#"><i class="fas fa-chart-line"></i> الإحصائيات</a></li>
-            <li><a href="#"><i class="fas fa-users"></i> العملاء</a></li>
-            <li><a href="#"><i class="fas fa-cog"></i> الإعدادات</a></li>
-            <li><a href="#"><i class="fas fa-shield-alt"></i> الأمان</a></li>
-            <li><a href="#"><i class="fas fa-question-circle"></i> المساعدة</a></li>
-        </ul>
-        
-        <div style="position: absolute; bottom: 20px; right: 20px; left: 20px;">
-            <a href="#" class="royal-btn" id="logoutBtn" style="display: block; text-align: center;">
-                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-            </a>
-        </div>
-    </div>
-    
-    <!-- قاعة العرش (المحتوى الرئيسي) -->
-    <div class="throne-hall" id="throneHall">
-        <!-- تاج الشريط العلوي -->
-        <div class="royal-crown">
-            <div class="crown-title">
-                <i class="fas fa-home"></i> لوحة التحكم
-            </div>
-            
-            <div class="royal-search">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="ابحث في الإمبراطورية...">
-            </div>
-            
-            <div class="royal-actions">
-                <div class="royal-notification">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
+        <!-- المحتوى الرئيسي -->
+        <div class="main-content">
+            <!-- شريط التنقل العلوي -->
+            <div class="navbar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="ابحث عن أي شيء...">
                 </div>
-                <div class="royal-logout" id="mobileLogout">
-                    <i class="fas fa-sign-out-alt"></i>
-                </div>
-            </div>
-        </div>
-        
-        <!-- جوائز الإمبراطورية -->
-        <div class="imperial-treasures">
-            <div class="imperial-card">
-                <div class="treasure-header">
-                    <div>
-                        <div class="treasure-value">24,850</div>
-                        <div class="treasure-title">الرصيد الحالي (DZD)</div>
+                
+                <div class="user-actions">
+                    <div class="notification-btn">
+                        <i class="fas fa-bell"></i>
                     </div>
-                    <div class="treasure-icon">
-                        <i class="fas fa-coins"></i>
+                    <div class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
                     </div>
                 </div>
             </div>
             
-            <div class="imperial-card">
-                <div class="treasure-header">
-                    <div>
-                        <div class="treasure-value">18</div>
-                        <div class="treasure-title">تبادل هذا الشهر</div>
-                    </div>
-                    <div class="treasure-icon">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                </div>
+            <!-- محتوى لوحة التحكم -->
+            <div class="welcome-card">
+                <h2>مرحبًا بعودتك، MOUAYED!</h2>
+                <p>هنا يمكنك إدارة عمليات التبادل الخاصة بك، تتبع الأسعار، وإدارة حسابك الشخصي.</p>
+                <button class="auth-btn" style="width: auto; display: inline-block; padding: 10px 20px;">بدء تبادل جديد</button>
             </div>
             
-            <div class="imperial-card">
-                <div class="treasure-header">
-                    <div>
-                        <div class="treasure-value">3,240</div>
-                        <div class="treasure-title">ربح الشهر (DZD)</div>
-                    </div>
-                    <div class="treasure-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="imperial-card">
-                <div class="treasure-header">
-                    <div>
-                        <div class="treasure-value">4.8</div>
-                        <div class="treasure-title">تقييم العملاء</div>
-                    </div>
-                    <div class="treasure-icon">
-                        <i class="fas fa-star"></i>
+            <div class="stats-cards">
+                <div class="stat-card primary">
+                    <div class="stat-card-header">
+                        <div>
+                            <div class="stat-card-value">5,430</div>
+                            <div class="stat-card-title">دينار جزائري</div>
+                        </div>
+                        <div class="stat-card-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- سجلات الإمبراطورية -->
-        <div class="imperial-records">
-            <div class="records-header">
-                <h3 class="records-title"><i class="fas fa-exchange-alt"></i> آخر التبادلات</h3>
-                <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
-            </div>
-            
-            <table class="records-table">
-                <thead>
-                    <tr>
-                        <th>المعرف</th>
-                        <th>التاريخ</th>
-                        <th>المبلغ</th>
-                        <th>النوع</th>
-                        <th>الحالة</th>
-                        <th>الإجراءات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>#TX-7854</td>
-                        <td>15/06/2023</td>
-                        <td class="record-amount">24,500 DZD</td>
-                        <td>بيع USDT</td>
-                        <td><span class="record-status status-success">مكتمل</span></td>
-                        <td><a href="#" class="record-details">التفاصيل</a></td>
-                    </tr>
-                    <tr>
-                        <td>#TX-7853</td>
-                        <td>14/06/2023</td>
-                        <td class="record-amount">15,200 DZD</td>
-                        <td>شراء BTC</td>
-                        <td><span class="record-status status-success">مكتمل</span></td>
-                        <td><a href="#" class="record-details">التفاصيل</a></td>
-                    </tr>
-                    <tr>
-                        <td>#TX-7852</td>
-                        <td>12/06/2023</td>
-                        <td class="record-amount">32,000 DZD</td>
-                        <td>بيع ETH</td>
-                        <td><span class="record-status status-pending">قيد الانتظار</span></td>
-                        <td><a href="#" class="record-details">التفاصيل</a></td>
-                    </tr>
-                    <tr>
-                        <td>#TX-7851</td>
-                        <td>10/06/2023</td>
-                        <td class="record-amount">18,750 DZD</td>
-                        <td>شراء USDT</td>
-                        <td><span class="record-status status-failed">ملغي</span></td>
-                        <td><a href="#" class="record-details">التفاصيل</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    
-    <!-- جوهرة التبادل السريع -->
-    <a href="#" class="exchange-jewel" id="exchangeJewel">
-        <i class="fas fa-bolt"></i> تبادل سريع
-    </a>
-    
-    <!-- نافذة التباد
+                
+                <div class="stat-card success">
+                    <div class="stat-card-header">
+                        <div>
+                            <div class="stat-card-value">24</div>
+                            <div class="stat-card-title">تبادل مكتمل</div>
+                        </div>
+                        <div class="stat-card-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card warning">
+                    <div class="stat-card-header">
+                        <div>
+                            <div class="stat-card-value">3</div>
+                            <div class="stat-card-title">تبادل قيد الانتظار</div>
+                        </div>
+                        <div class="stat-card-icon">
+                 
