@@ -31,33 +31,69 @@
             color: var(--text);
             min-height: 100vh;
             display: flex;
+            overflow: hidden;
         }
 
-        /* الشريط الجانبي للدعم */
-        .support-sidebar {
-            width: 300px;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 2rem;
-            border-left: 1px solid var(--accent);
+        /* أنماط الدعم الفني */
+        .support-corner {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .support-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s;
+            border: none;
         }
 
-        .support-header {
-            text-align: center;
-            margin-bottom: 2rem;
+        .support-btn:hover {
+            transform: scale(1.1);
         }
 
-        .support-header h2 {
+        .support-panel {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            width: 25vw;
+            min-width: 300px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(150%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 999;
+        }
+
+        .support-panel.active {
+            transform: translateY(0);
+        }
+
+        .support-panel h3 {
             color: var(--accent);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
         }
 
         .support-item {
             display: flex;
             align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
             border-radius: 8px;
             transition: all 0.3s;
         }
@@ -67,316 +103,83 @@
         }
 
         .support-item i {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--accent);
-            margin-left: 1rem;
+            margin-left: 0.8rem;
         }
 
         .creator-credit {
-            margin-top: auto;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            padding: 1rem;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        /* واجهة تسجيل الدخول */
-        .login-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .login-box {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            width: 100%;
-            max-width: 500px;
-            padding: 3rem;
-            border-radius: 15px;
-            border: 1px solid var(--accent);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .login-header img {
-            width: 100px;
-            margin-bottom: 1rem;
-        }
-
-        .login-header h1 {
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-            font-size: 2rem;
-        }
-
-        .login-header p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .security-tips {
-            background: rgba(255, 215, 0, 0.1);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border-right: 3px solid var(--accent);
-        }
-
-        .security-tips h3 {
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .security-tips h3 i {
-            margin-left: 0.5rem;
-        }
-
-        .security-tips ul {
-            padding-right: 1.5rem;
-        }
-
-        .security-tips li {
-            margin-bottom: 0.5rem;
             font-size: 0.9rem;
         }
 
-        .input-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(0, 0, 0, 0.3);
-            color: var(--text);
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-        }
-
-        .input-group i {
-            position: absolute;
-            top: 50%;
-            right: 1rem;
-            transform: translateY(-50%);
-            color: var(--accent);
-        }
-
-        .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-        }
-
-        .remember-me input {
-            margin-left: 0.5rem;
-        }
-
-        .forgot-password {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(to right, var(--accent), var(--accent-dark));
-            color: var(--primary);
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-bottom: 1.5rem;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .login-footer {
-            text-align: center;
-            color: var(--text-secondary);
-        }
-
-        .login-footer a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        /* لوغو USDT العالمي */
-        .usdt-global-badge {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0, 107, 79, 0.8);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            font-size: 0.9rem;
-            z-index: 100;
-        }
-
-        .usdt-global-badge img {
-            width: 20px;
-            margin-right: 0.5rem;
-        }
+        /* باقي الأنماط تبقى كما هي */
+        /* ... */
     </style>
 </head>
 <body>
-    <!-- الشريط الجانبي للدعم والاتصال -->
-    <div class="support-sidebar">
-        <div class="support-header">
-            <h2>الدعم الفني</h2>
-            <p>نحن هنا لمساعدتك على مدار الساعة</p>
-        </div>
-
-        <div class="support-item">
-            <i class="fab fa-telegram"></i>
-            <div>
-                <h3>الدعم عبر التليجرام</h3>
-                <p>@Mido_taibi</p>
+    <!-- زر الدعم الفني -->
+    <div class="support-corner">
+        <button class="support-btn" id="supportBtn">
+            <i class="fas fa-headset"></i>
+        </button>
+        <div class="support-panel" id="supportPanel">
+            <h3>الدعم الفني</h3>
+            
+            <div class="support-item">
+                <i class="fab fa-telegram"></i>
+                <div>
+                    <h4>التليجرام</h4>
+                    <p>@Mido_taibi</p>
+                </div>
             </div>
-        </div>
-
-        <div class="support-item">
-            <i class="fas fa-envelope"></i>
-            <div>
-                <h3>البريد الإلكتروني</h3>
-                <p>mouydtaibi2@gmail.com</p>
+            
+            <div class="support-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h4>البريد الإلكتروني</h4>
+                    <p>mouydtaibi2@gmail.com</p>
+                </div>
             </div>
-        </div>
-
-        <div class="support-item">
-            <i class="fas fa-phone"></i>
-            <div>
-                <h3>الدعم الهاتفي</h3>
-                <p>+213 XXX XXX XXX</p>
+            
+            <div class="support-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>الدعم الهاتفي</h4>
+                    <p>+213 XXX XXX XXX</p>
+                </div>
             </div>
-        </div>
-
-        <div class="creator-credit">
-            <p>صنع بكل فخر بواسطة</p>
-            <h3 style="color: var(--accent);">TAIBI MOUYAD</h3>
-            <p>مطور ومصمم المنصة</p>
+            
+            <div class="creator-credit">
+                <p>من تطوير <span style="color: var(--accent);">TAIBI MOUYAD</span></p>
+                <p>نتمنى لكم تجربة سعيدة مع منصتنا</p>
+            </div>
         </div>
     </div>
 
-    <!-- واجهة تسجيل الدخول -->
+    <!-- باقي محتوى الموقع -->
     <div class="login-container">
-        <div class="login-box">
-            <div class="login-header">
-                <img src="assets/logo.png" alt="MIDO Crypto">
-                <h1>مرحبًا بك في MIDO Crypto</h1>
-                <p>منصة التبادل الآمن للعملات الرقمية مع دعم الدينار الجزائري (DZD) والريال السعودي (SAR) والعملات العالمية</p>
-            </div>
-
-            <div class="security-tips">
-                <h3><i class="fas fa-shield-alt"></i> نصائح أمنية</h3>
-                <ul>
-                    <li>لا تشارك بيانات الدخول مع أي شخص</li>
-                    <li>تأكد من أنك على الموقع الرسمي MIDO Crypto</li>
-                    <li>استخدم كلمة مرور قوية وفريدة</li>
-                </ul>
-            </div>
-
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="email">البريد الإلكتروني</label>
-                    <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required>
-                    <i class="fas fa-envelope"></i>
-                </div>
-
-                <div class="input-group">
-                    <label for="password">كلمة المرور</label>
-                    <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-                    <i class="fas fa-lock"></i>
-                </div>
-
-                <div class="remember-forgot">
-                    <div class="remember-me">
-                        <input type="checkbox" id="remember">
-                        <label for="remember">تذكرني</label>
-                    </div>
-                    <a href="#" class="forgot-password">نسيت كلمة المرور؟</a>
-                </div>
-
-                <button type="submit" class="login-btn">
-                    <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
-                </button>
-
-                <div class="login-footer">
-                    ليس لديك حساب؟ <a href="#">أنشئ حساب جديد</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- لوغو USDT العالمي -->
-    <div class="usdt-global-badge">
-        <img src="assets/usdt-icon.png" alt="USDT">
-        <span>مدعوم بـ USDT العالمي</span>
+        <!-- ... -->
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // هنا يمكنك إضافة التحقق من بيانات الدخول
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // تخزين حالة تسجيل الدخول (مثال)
-            localStorage.setItem('isLoggedIn', 'true');
-            
-            // توجيه المستخدم إلى لوحة التحكم
-            window.location.href = 'dashboard.html';
+        // التحكم في لوحة الدعم
+        const supportBtn = document.getElementById('supportBtn');
+        const supportPanel = document.getElementById('supportPanel');
+        
+        supportBtn.addEventListener('click', function() {
+            supportPanel.classList.toggle('active');
         });
 
-        // التحقق إذا كان المستخدم مسجل الدخول بالفعل
-        if(localStorage.getItem('isLoggedIn') {
-            window.location.href = 'dashboard.html';
-        }
+        // إغلاق اللوحة عند النقر خارجها
+        document.addEventListener('click', function(event) {
+            if (!supportPanel.contains(event.target) && event.target !== supportBtn) {
+                supportPanel.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
