@@ -3,803 +3,598 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIDO Crypto | منصة التداول بالعملات الرقمية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>USDT Exchange - تسجيل الدخول</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* المتغيرات العامة */
-        :root {
-            --primary: #0A1D37;
-            --secondary: #1E3A8A;
-            --accent: #FFD700;
-            --accent-dark: #D4AF37;
-            --text: #FFFFFF;
-            --text-secondary: #CCCCCC;
-            --glass: rgba(10, 29, 55, 0.92);
-            --success: #28a745;
-            --error: #dc3545;
-            --warning: #ffc107;
-            --dzd-color: #006633; /* لون خاص بالدينار الجزائري */
-        }
-
-        /* إعادة الضبط */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        
         body {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
-            line-height: 1.6;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
         }
-
-        /* الخلفية المتحركة */
-        .crypto-background {
+        
+        .bg-animation {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
             overflow: hidden;
         }
-
-        .crypto-particle {
+        
+        .circle {
             position: absolute;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.8;
-            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.6));
-            animation: floatBubble linear infinite;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: animate 15s infinite;
         }
-
-        @keyframes floatBubble {
+        
+        .circle:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 20%;
+        }
+        
+        .circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+        
+        .circle:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 30%;
+            left: 50%;
+            animation-delay: 4s;
+        }
+        
+        .circle:nth-child(4) {
+            width: 80px;
+            height: 80px;
+            top: 80%;
+            left: 30%;
+            animation-delay: 6s;
+        }
+        
+        .circle:nth-child(5) {
+            width: 120px;
+            height: 120px;
+            top: 20%;
+            left: 70%;
+            animation-delay: 8s;
+        }
+        
+        @keyframes animate {
             0% {
-                transform: translateY(110vh) translateX(0) rotate(0deg) scale(0.8);
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
             }
             100% {
-                transform: translateY(-10vh) translateX(100px) rotate(360deg) scale(1.2);
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
             }
         }
-
-        /* شريط التنقل */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.2rem 5%;
-            background: var(--glass);
-            backdrop-filter: blur(12px);
+        
+        .container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            padding: 0.8rem 5%;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-img {
-            height: 42px;
-            transition: all 0.3s;
-        }
-
-        .logo-text {
-            font-size: 1.6rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--accent), var(--accent-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 1.05rem;
-            font-weight: 500;
-            transition: all 0.3s;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-            left: 0;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-            display: inline-flex;
-            align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color: var(--primary);
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-        }
-
-        .btn-outline:hover {
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        /* صفحة تسجيل الدخول */
-        .login-section {
+            align-items: center;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 5% 4rem;
+            position: relative;
+            z-index: 1;
         }
-
-        .login-container {
-            width: 100%;
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .login-intro {
-            animation: fadeInLeft 1s ease-out;
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .login-title {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-        }
-
-        .login-title span {
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .login-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            max-width: 90%;
-        }
-
-        .features-list {
-            list-style: none;
-            margin-bottom: 3rem;
-        }
-
-        .features-list li {
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.05rem;
-        }
-
-        .features-list i {
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        .login-form-container {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-            animation: fadeInRight 1s ease-out;
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .form-header {
+        
+        .login-box {
+            width: 400px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            margin-bottom: 2.5rem;
+            transition: all 0.5s;
         }
-
-        .form-title {
+        
+        .login-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+        
+        .login-box h2 {
+            color: #fff;
             font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 0.8rem;
-        }
-
-        .form-subtitle {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .input-group {
-            margin-bottom: 1.8rem;
+            margin-bottom: 30px;
             position: relative;
         }
-
-        .input-label {
-            display: block;
-            margin-bottom: 0.8rem;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
+        
+        .login-box h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #4cc9f0;
+            border-radius: 3px;
         }
-
-        .input-field {
+        
+        .welcome-message {
+            color: #a5a5a5;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .input-group input {
             width: 100%;
-            padding: 1.1rem 1.1rem 1.1rem 3.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            background: rgba(0, 0, 0, 0.25);
-            color: var(--text);
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
             font-size: 1rem;
+            outline: none;
             transition: all 0.3s;
         }
-
-        .input-field:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.15);
+        
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.2);
         }
-
-        .input-icon {
+        
+        .input-group label {
             position: absolute;
-            top: 50%;
-            right: 1.2rem;
-            transform: translateY(-50%);
-            color: var(--accent);
-            font-size: 1.2rem;
+            top: 15px;
+            right: 20px;
+            color: #a5a5a5;
+            font-size: 1rem;
+            pointer-events: none;
+            transition: all 0.3s;
         }
-
-        .form-options {
+        
+        .input-group input:focus ~ label,
+        .input-group input:valid ~ label {
+            top: -20px;
+            right: 15px;
+            font-size: 0.8rem;
+            color: #4cc9f0;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #4cc9f0, #4361ee);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(45deg, #4361ee, #4cc9f0);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .links {
+            margin-top: 20px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
         }
-
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            cursor: pointer;
-        }
-
-        .remember-me input {
-            accent-color: var(--accent);
-            width: 1.1rem;
-            height: 1.1rem;
-            cursor: pointer;
-        }
-
-        .forgot-password {
-            color: var(--accent);
+        
+        .links a {
+            color: #a5a5a5;
             text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            margin-bottom: 1.8rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.8rem;
-            color: var(--text-secondary);
             font-size: 0.9rem;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 0 1rem;
-        }
-
-        .social-login {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: white;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .social-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .social-btn.google {
-            color: #DB4437;
-        }
-
-        .social-btn.facebook {
-            color: #4267B2;
-        }
-
-        .social-btn.apple {
-            color: #A2AAAD;
-        }
-
-        .register-link {
-            text-align: center;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-
-        .register-link a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
             transition: all 0.3s;
         }
-
-        .register-link a:hover {
-            text-decoration: underline;
+        
+        .links a:hover {
+            color: #4cc9f0;
         }
-
-        /* لوحة التحكم */
+        
+        /* Dashboard Styles (Hidden by default) */
         .dashboard {
             display: none;
-            min-height: 100vh;
-            padding-top: 6rem;
-        }
-
-        .dashboard-container {
             width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 5%;
+            min-height: 100vh;
+            background: #f5f5f5;
+            color: #333;
         }
-
+        
         .dashboard-header {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 3rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
-        .welcome-message h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4cc9f0;
         }
-
-        .welcome-message h1 span {
-            color: var(--accent);
-        }
-
-        .welcome-message p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-        }
-
+        
         .user-profile {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            transition: all 0.3s;
-            cursor: pointer;
+            gap: 10px;
         }
-
-        .user-profile:hover {
-            background: rgba(0, 0, 0, 0.3);
-        }
-
+        
         .user-avatar {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--accent);
+            border: 2px solid #4cc9f0;
         }
-
-        .user-name {
-            font-weight: 500;
-        }
-
-        .user-email {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .stats-grid {
+        
+        .dashboard-content {
+            padding: 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
         }
-
-        .stat-card {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            padding: 1.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 215, 0, 0.2);
-        }
-
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .stat-title {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        .stat-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--accent);
-        }
-
-        .stat-value {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-change {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .change-up {
-            color: var(--success);
-        }
-
-        .change-down {
-            color: var(--error);
-        }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 2rem;
-        }
-
-        .sidebar {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            height: fit-content;
-        }
-
-        .sidebar-menu {
-            list-style: none;
-        }
-
-        .menu-item {
-            margin-bottom: 0.5rem;
-        }
-
-        .menu-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.9rem 1.2rem;
+        
+        .profile-card {
+            background: white;
             border-radius: 10px;
-            color: var(--text);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 1.05rem;
-        }
-
-        .menu-link:hover,
-        .menu-link.active {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--accent);
-        }
-
-        .menu-link i {
-            font-size: 1.2rem;
-            width: 25px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
-
-        .content-area {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.8rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .section-title i {
-            color: var(--accent);
-        }
-
-        .exchange-card {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255, 215, 0, 0.1);
-        }
-
-        .exchange-form {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 1.5rem;
-            align-items: end;
-        }
-
-        .form-group {
-            position: relative;
-        }
-
-        .currency-select {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 0.8rem 1.2rem;
-            border-radius: 10px;
-            margin-bottom: 0.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .currency-select:hover {
-            border-color: var(--accent);
-        }
-
-        .currency-icon {
-            width: 30px;
-            height: 30px;
+        
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid #4cc9f0;
         }
-
-        .currency-name {
-            flex: 1;
-            font-weight: 500;
-        }
-
-        .currency-dropdown {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .amount-input {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.3);
-            color: var(--text);
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-
-        .amount-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
-        }
-
-        .swap-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            color: var(--accent);
+        
+        .profile-name {
             font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-bottom: 1.8rem;
+            margin-bottom: 5px;
         }
-
-        .swap-btn:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: rotate(180deg);
+        
+        .profile-email {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
         }
-
-        .exchange-info {
+        
+        .profile-stats {
             display: flex;
-            justify-content: space-between;
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
+            justify-content: space-around;
+            margin-top: 20px;
         }
-
-        .exchange-rate {
-            color: var(--accent);
-            font-weight: 500;
+        
+        .stat-item {
+            text-align: center;
         }
-
-        .exchange-fee {
-            color: var(--warning);
+        
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4361ee;
         }
-
-        .execute-btn {
-            width: 100%;
-            padding: 1.2rem;
-            margin-top: 1.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
         }
-
-        .market-table {
+        
+        .crypto-rates {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+            border-bottom: 2px solid #4cc9f0;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .crypto-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 2rem;
         }
-
-        .market-table th,
-        .market-table td {
-            padding: 1.2rem 1rem;
+        
+        .crypto-table th, .crypto-table td {
+            padding: 12px 15px;
             text-align: right;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #eee;
         }
-
-        .market-table th {
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 0.95rem;
+        
+        .crypto-table th {
+            background: #f9f9f9;
+            color: #4361ee;
         }
-
-        .market-table tr:last-child td {
-            border-bottom: none;
+        
+        .crypto-table tr:hover {
+            background: #f5f5f5;
         }
-
-        .market-table tr:hover td {
-            background: rgba(255, 215, 0, 0.03);
-        }
-
-        .coin-info {
+        
+        .crypto-name {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 10px;
         }
-
-        .coin-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            object-fit: cover;
+        
+        .crypto-icon {
+            width: 24px;
+            height: 24px;
         }
-
-        .coin-name {
-            font-weight: 500;
+        
+        .price-up {
+            color: #4CAF50;
+        }
+        
+        .price-down {
+            color: #F44336;
+        }
+        
+        .logout-btn {
+            background: #F44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #D32F2F;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-box {
+                width: 90%;
+                padding: 30px 20px;
+            }
+            
+            .dashboard-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    
+    <!-- Login Container -->
+    <div class="container" id="login-container">
+        <div class="login-box">
+            <h2>تسجيل الدخول</h2>
+            <p class="welcome-message">مرحبًا بكم في منصة تبادل USDT<br>أدخل بياناتك للوصول إلى لوحة التحكم الخاصة بك</p>
+            
+            <form id="login-form">
+                <div class="input-group">
+                    <input type="text" id="username" required>
+                    <label for="username">اسم المستخدم</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" required>
+                    <label for="password">كلمة المرور</label>
+                </div>
+                
+                <button type="submit" class="btn">تسجيل الدخول</button>
+                
+                <div class="links">
+                    <a href="#">نسيت كلمة المرور؟</a>
+                    <a href="#">إنشاء حساب جديد</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Dashboard (Hidden by default) -->
+    <div class="dashboard" id="dashboard">
+        <header class="dashboard-header">
+            <div class="logo">USDT Exchange</div>
+            <div class="user-profile">
+                <img src="https://via.placeholder.com/150" alt="User Avatar" class="user-avatar" id="header-avatar">
+                <span id="header-username">مستخدم</span>
+                <button class="logout-btn" id="logout-btn">تسجيل الخروج</button>
+            </div>
+        </header>
+        
+        <div class="dashboard-content">
+            <div class="profile-card">
+                <img src="https://via.placeholder.com/150" alt="Profile Avatar" class="profile-avatar" id="profile-avatar">
+                <h3 class="profile-name" id="profile-name">اسم المستخدم</h3>
+                <p class="profile-email" id="profile-email">user@example.com</p>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">عمليات</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">4.8</div>
+                        <div class="stat-label">تقييم</div>
+                    </div>
+                </div>
+                
+                <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                <button class="btn" style="margin-top: 20px; padding: 8px 15px; font-size: 0.9rem;" onclick="document.getElementById('avatar-upload').click()">تغيير الصورة</button>
+            </div>
+            
+            <div class="crypto-rates">
+                <h3 class="section-title">أسعار العملات الرقمية بالدينار الجزائري</h3>
+                
+                <table class="crypto-table">
+                    <thead>
+                        <tr>
+                            <th>العملة</th>
+                            <th>السعر (DZD)</th>
+                            <th>تغيير 24h</th>
+                            <th>أعلى سعر</th>
+                            <th>أدنى سعر</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="crypto-name">
+                                    <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" class="crypto-icon">
+                                    <span>USDT</span>
+                                </div>
+                            </td>
+                            <td>135.75</td>
+                            <td class="price-up">+0.5%</td>
+                            <td>136.20</td>
+                            <td>135.10</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="crypto-name">
+                                    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="BTC" class="crypto-icon">
+                                    <span>Bitcoin</span>
+                                </div>
+                            </td>
+                            <td>4,231,456.80</td>
+                            <td class="price-up">+1.2%</td>
+                            <td>4,245,300.00</td>
+                            <td>4,200,150.50</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="crypto-name">
+                                    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="ETH" class="crypto-icon">
+                                    <span>Ethereum</span>
+                                </div>
+                            </td>
+                            <td>231,450.25</td>
+                            <td class="price-down">-0.8%</td>
+                            <td>233,200.00</td>
+                            <td>230,100.75</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="crypto-name">
+                                    <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="BNB" class="crypto-icon">
+                                    <span>BNB</span>
+                                </div>
+                            </td>
+                            <td>45,230.50</td>
+                            <td class="price-up">+2.1%</td>
+                            <td>45,500.00</td>
+                            <td>44,900.25</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Login Form Handling
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation (in a real app, you would check against a database)
+            if(username && password) {
+                // Hide login and show dashboard
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                
+                // Set user data
+                document.getElementById('header-username').textContent = username;
+                document.getElementById('profile-name').textContent = username;
+                document.getElementById('profile-email').textContent = `${username.toLowerCase()}@usdt-exchange.dz`;
+            } else {
+                alert('الرجاء إدخال اسم المستخدم وكلمة المرور');
+            }
+        });
+        
+        // Logout Button
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            document.getElementById('login-container').style.display = 'flex';
+            document.getElementById('dashboard').style.display = 'none';
+            
+            // Clear form
+            document.getElementById('login-form').reset();
+        });
+        
+        // Avatar Upload
+        document.getElementById('avatar-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('profile-avatar').src = event.target.result;
+                    document.getElementById('header-avatar').src = event.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Simulate real-time price updates
+        function updatePrices() {
+            const prices = [
+                { id: 'usdt', base: 135.75, variation: 0.5 },
+                { id: 'btc', base: 4231456.80, variation: 1.2 },
+                { id: 'eth', base: 231450.25, variation: -0.8 },
+                { id: 'bnb', base: 45230.50, variation: 2.1 }
+            ];
+            
+            prices.forEach(coin => {
+                const randomFactor = (Math.random() * 0.4 - 0.2); // Random variation between -0.2 and +0.2
+                const newPrice = coin.base * (1 + (coin.variation + randomFactor) / 100);
+                
+                // Update the table (simplified for demo)
+                // In a real app, you would update all cells for each coin
+            });
+        }
+        
+        // Update prices every 5 seconds
+        setInterval(updatePrices, 5000);
+    </script>
+</body>
+</html>
