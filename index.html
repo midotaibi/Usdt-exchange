@@ -1,56 +1,255 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Taibi Exchange</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>USDT Exchange | منصة تبادل العملات الرقمية</title>
+    <style>
+        :root {
+            --primary-color: #0A1D37;
+            --secondary-color: #1E3A8A;
+            --accent-color: #FFD700;
+            --text-color: #FFFFFF;
+            --text-secondary: #CCCCCC;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --glass-effect: rgba(10, 29, 55, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* التصميمات الأساسية */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+            margin-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .exchange-btn {
+            background: linear-gradient(90deg, var(--accent-color), #FFA500);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: var(--primary-color);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .exchange-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        /* قسم العملات الطائرة */
+        .floating-coins {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        .coin {
+            position: absolute;
+            width: 60px;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .btc {
+            left: 20%;
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        .eth {
+            left: 50%;
+            top: 40%;
+            animation-delay: 2s;
+        }
+
+        .usdt {
+            left: 70%;
+            top: 15%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        /* تذييل الصفحة */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem 5%;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gold-text {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* صفحة تسجيل الدخول */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            animation: fadeIn 0.3s;
+        }
+
+        .login-container {
+            background: var(--glass-effect);
+            width: 90%;
+            max-width: 400px;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--accent-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg" alt="علم الجزائر" />
-        <h1>Taibi Exchange</h1>
-      </div>
-      <div class="menu-toggle">⋮</div>
-      <div class="dropdown-menu">
-        <a href="#">الشراء</a>
-        <a href="#">البيع</a>
-        <a href="#">رؤية السعر</a>
-        <a href="#">شراء خدمات</a>
-        <a href="terms.html">شروط الخدمة</a>
-      </div>
-    </div>
-  </header>
+    <!-- جزيئات الخلفية -->
+    <div id="particles-js"></div>
+    
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="USDT Exchange" class="logo">
+            <span class="logo-text">USDT Exchange</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="#" class="nav-link active">الرئيسية</a>
+            <a href="#" class="nav-link">التحويل</a>
+            <a href="#" class="nav-link">الدعم</a>
+            <button class="exchange-btn">تسجيل الدخول</button>
+        </div>
+    </nav>
 
-  <main>
-    <section class="hero">
-      <h2>مرحبا بك في Taibi Exchange</h2>
-      <p>منصة آمنة وسريعة لبيع وشراء USDT في الجزائر</p>
+    <!-- المحتوى الرئيسي -->
+    <main style="margin-top: 80px; padding: 20px 5%;">
+        <section class="hero-section" style="display: flex; align-items: center; min-height: 80vh;">
+            <div style="flex: 1;">
+                <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">أسرع منصة لتبادل <span style="color: var(--accent-color);">USDT</span> في الوطن العربي</h1>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">تحويل آمن وسريع بأفضل الأسعار في السوق</p>
+                
+                <div class="floating-coins">
+                    <img src="assets/btc.png" class="coin btc" alt="Bitcoin">
+                    <img src="assets/eth.png" class="coin eth" alt="Ethereum">
+                    <img src="assets/usdt.png" class="coin usdt" alt="USDT">
+                </div>
+            </div>
+        </section>
+    </main>
 
-      <div class="auth-buttons">
-        <button>تسجيل الدخول</button>
-        <button>إنشاء حساب</button>
-      </div>
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>تواصل معنا على:</p>
+            <div style="margin: 1rem 0;">
+                <a href="mailto:mouydtaibi2@gmail.com" style="color: var(--accent-color); margin: 0 10px;">mouydtaibi2@gmail.com</a>
+                <a href="https://t.me/Mido_taibi" style="color: var(--accent-color); margin: 0 10px;">Telegram</a>
+                <a href="https://www.instagram.com/railux.0" style="color: var(--accent-color); margin: 0 10px;">Instagram</a>
+            </div>
+            <div class="footer-bottom">
+                <p>صنع بكل فخر بواسطة <span class="gold-text">TAIBI MOUYAD</span> © 2024</p>
+            </div>
+        </div>
+    </footer>
 
-      <select id="language-selector">
-        <option value="ar">العربية</option>
-        <option value="fr">Français</option>
-        <option value="en">English</option>
-      </select>
-    </section>
-  </main>
+    <!-- مكتبات JavaScript -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // تهيئة جزيئات الخلفية
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#FFD700" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#FFD700", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" }
+                }
+            }
+        });
 
-  <footer>
-    <p>صُنع بكل فخر من طرف Taibi Mouayed</p>
-    <p>
-      للتواصل:
-      <a href="mailto:mouydtaibi3@gmail.com">البريد الإلكتروني</a> |
-      <a href="https://www.instagram.com/railux.0">Instagram</a> |
-      <a href="https://t.me/M499k">Telegram</a>
-    </p>
-  </footer>
+        // فتح/إغلاق نافذة التسجيل
+        document.querySelector('.exchange-btn').addEventListener('click', function() {
+            document.querySelector('.login-modal').style.display = 'block';
+        });
+    </script>
 </body>
 </html>
