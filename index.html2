@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DZ USDT | تسجيل الدخول</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+    body {
+      background-color: #0a0a0a;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    #bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+    .logo {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #00FFC6;
+      margin-bottom: 10px;
+    }
+    p.description {
+      margin-bottom: 25px;
+      color: #ccc;
+      font-size: 1rem;
+    }
+    form {
+      background: #111;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00FFC6;
+      width: 100%;
+      max-width: 400px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: #fff;
+    }
+    button {
+      background: #00FFC6;
+      color: #000;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #00ddb0;
+    }
+    .contact {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .contact a {
+      color: #00FFC6;
+      text-decoration: none;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<div class="container">
+  <img src="logo.png" alt="DZ USDT Logo" class="logo">
+  <h1>مرحبا بك في DZ USDT</h1>
+  <p class="description">منصة موثوقة وآمنة لبيع وشراء USDT في الجزائر</p>
+  
+  <form id="loginForm">
+    <input type="text" name="username" placeholder="اسم المستخدم" required />
+    <input type="email" name="email" placeholder="البريد الإلكتروني" required />
+    <button type="submit">تسجيل الدخول / إنشاء حساب</button>
+  </form>
+
+  <div class="contact">
+    للتواصل: 
+    <br>
+    <a href="https://www.instagram.com/railux.0?igsh=Zmo2bTJrbTZqMXA=" target="_blank">إنستغرام</a> |
+    <a href="mailto:mouydtaibi2@gmail.com">الإيميل</a> |
+    <a href="https://t.me/Mido_taibi" target="_blank">تيليغرام</a>
+    <br>
+    TAIBI MOUYAD
+  </div>
+
+  <div class="footer">صُنع بكل فخر من قبلي</div>
+</div>
+
+<!-- Telegram Bot Script -->
+<script>
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const username = this.username.value;
+    const email = this.email.value;
+    const telegramToken = "7368039692:AAGOPu6YEqvUS-u1NXOswLwvYaovRrNpiWI";
+    const chatId = "7025276107";
+
+    const message = `🔐 تسجيل مستخدم جديد:\n👤 الاسم: ${username}\n📧 الإيميل: ${email}`;
+    fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, text: message })
+    }).then(() => {
+      window.location.href = "dashboard.html"; // تحويل بعد تسجيل الدخول
+    });
+  });
+</script>
+
+<!-- خلفية متحركة Canvas -->
+<script>
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.radius = Math.random() * 1.5;
+      this.speedX = (Math.random() - 0.5) * 0.5;
+      this.speedY = (Math.random() - 0.5) * 0.5;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.fillStyle = "#00FFC6";
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function initParticles(num = 200) {
+    particles = [];
+    for (let i = 0; i < num; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+
+  initParticles();
+  animate();
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initParticles();
+  });
+</script>
+
+</body>
+</html>
