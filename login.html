@@ -2,63 +2,95 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>تسجيل الدخول</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DZ USDT - تسجيل الدخول</title>
   <style>
     body {
-      background-color: #101010;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 20px;
+      font-family: 'Arial', sans-serif;
+      background-color: #f2f4f8;
+      margin: 0;
+      padding: 0;
     }
-    nav {
-      background: #222;
-      padding: 10px;
+    .container {
+      max-width: 400px;
+      margin: 80px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-top: 6px solid #004A99;
+    }
+    .logo {
       text-align: center;
+      margin-bottom: 20px;
     }
-    nav a {
-      color: white;
-      margin: 10px;
-      text-decoration: none;
+    .logo img {
+      width: 100px;
     }
-    h1 {
-      color: #ff0;
+    h2 {
+      text-align: center;
+      color: #004A99;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      color: #333;
     }
     input[type="text"], input[type="password"] {
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      background: #333;
-      color: white;
-      border: 1px solid #555;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
     }
     button {
-      background: #ff0;
-      padding: 10px;
-      border: none;
       width: 100%;
-      color: #101010;
+      padding: 12px;
+      background-color: #004A99;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #00336b;
+    }
+    .link {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .link a {
+      color: #004A99;
+      text-decoration: none;
+    }
+    .link a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <!-- شريط التنقل -->
-  <nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="login.html">تسجيل الدخول</a>
-    <a href="signup.html">إنشاء حساب</a>
-    <a href="price.html">الأسعار</a>
-    <a href="exchange.html">بيع/شراء</a>
-    <a href="terms.html">الشروط</a>
-  </nav>
-
-  <!-- محتوى صفحة تسجيل الدخول -->
-  <h1>تسجيل الدخول</h1>
-  <form>
-    <input type="text" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
-    <input type="password" placeholder="كلمة المرور" required>
-    <button type="submit">تسجيل الدخول</button>
-  </form>
+  <div class="container">
+    <div class="logo">
+      <img src="https://eccp.poste.dz/images/logo.png" alt="Logo">
+    </div>
+    <h2>تسجيل الدخول إلى حسابك</h2>
+    <form>
+      <label>رقم الحساب الجاري (بدون المفتاح)</label>
+      <input type="text" placeholder="مثال: 12345678">
+      
+      <label>كلمة السر</label>
+      <input type="password" placeholder="********">
+      
+      <button type="submit">تسجيل الدخول</button>
+      <div class="link">
+        <a href="#">نسيت كلمة السر؟</a><br>
+        <a href="#">ليس لديك حساب؟ أنشئ واحد الآن</a>
+      </div>
+    </form>
+  </div>
 
 </body>
 </html>
