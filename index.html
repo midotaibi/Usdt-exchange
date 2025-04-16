@@ -1,42 +1,133 @@
-<!DOCTYPE html><html lang="ar">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول - Taibi Exchange</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>USDT Exchange | تبادل عملات رقمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/arabic-fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/images/logo.png">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="logo">Taibi Exchange</div>
-    <div class="lang-toggle">
-      <select>
-        <option value="ar">العربية</option>
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-      </select>
+    <!-- خلفية الجسيمات المتحركة -->
+    <div id="particles-js"></div>
+
+    <!-- شريط التنقل -->
+    <nav class="glass-nav">
+        <div class="logo-container">
+            <img src="assets/images/logo.png" class="logo" alt="شعار USDT">
+            <img src="assets/images/algeria-flag.png" class="flag" alt="علم الجزائر">
+        </div>
+        
+        <div class="nav-links">
+            <a href="#" class="active">الرئيسية</a>
+            <a href="#exchange">التحويل</a>
+            <a href="#support">الدعم</a>
+            <div class="lang-switcher">
+                <span class="active-lang">🇩🇿 العربية</span>
+                <div class="dropdown-langs">
+                    <span data-lang="en">🇺🇸 English</span>
+                    <span data-lang="fr">🇫🇷 Français</span>
+                </div>
+            </div>
+        </div>
+        
+        <button class="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+    </nav>
+
+    <!-- القائمة الجانبية للهاتف -->
+    <div class="mobile-menu">
+        <a href="#">الرئيسية</a>
+        <a href="#exchange">التحويل</a>
+        <a href="#support">الدعم</a>
+        <div class="lang-options">
+            <span class="active">🇩🇿 العربية</span>
+            <span>🇺🇸 English</span>
+            <span>🇫🇷 Français</span>
+        </div>
+        <div class="social-mobile">
+            <a href="https://t.me/Mido_taibi"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.instagram.com/railux.0"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:mouydtaibi2@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
     </div>
-    <div class="menu-toggle">☰</div>
-  </nav>  <aside class="sidebar">
-    <ul>
-      <li><a href="#">الشراء</a></li>
-      <li><a href="#">البيع</a></li>
-      <li><a href="#">الأسعار</a></li>
-      <li><a href="#">الخدمات</a></li>
-      <li><a href="support.html">الدعم</a></li>
-    </ul>
-  </aside>  <main class="login-container">
-    <h1>مرحباً بك في Taibi Exchange</h1>
-    <form action="home.html" method="POST">
-      <input type="text" placeholder="الاسم واللقب" required>
-      <input type="email" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
-      <input type="password" placeholder="كلمة السر" required>
-      <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
-      <button type="submit">تسجيل الدخول</button>
-      <p>ليس لديك حساب؟ <a href="register.html">أنشئ حساب</a></p>
-    </form>
-  </main>  <footer>
-    <p>صنع بكل فخر من قبل TAIBI MOUYAD</p>
-  </footer>  <script src="script.js"></script></body>
+
+    <!-- المحتوى الرئيسي -->
+    <main>
+        <section class="hero-section">
+            <div class="crypto-animation">
+                <!-- يتم إضافة العملات بالجافاسكريبت -->
+            </div>
+            
+            <div class="exchange-container">
+                <h1>أهلاً بك في <span class="gold-text">USDT Exchange</span></h1>
+                <p class="subtitle">أسرع منصة لتبادل العملات الرقمية في الجزائر</p>
+                
+                <div class="exchange-form">
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <img src="assets/images/usdt.png" alt="USDT">
+                        </div>
+                        <input type="number" placeholder="المبلغ بالـUSDT">
+                        <div class="currency-label">USDT</div>
+                    </div>
+                    
+                    <div class="swap-btn">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <input type="number" placeholder="المبلغ بالـDZD">
+                        <div class="currency-label">DZD</div>
+                    </div>
+                    
+                    <button class="exchange-btn">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>تحويل الآن</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="features-section">
+            <!-- أقسام إضافية -->
+        </section>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="glass-footer">
+        <div class="footer-content">
+            <div class="creator-info">
+                <p>صنع بكل فخر بواسطة <span class="gold-text">TAIBI MOUYAD</span></p>
+                <div class="social-icons">
+                    <a href="https://t.me/Mido_taibi"><i class="fab fa-telegram"></i></a>
+                    <a href="https://www.instagram.com/railux.0"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:mouydtaibi2@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            
+            <div class="legal-links">
+                <a href="terms/privacy.html">سياسة الخصوصية</a>
+                <a href="terms/terms.html">شروط الخدمة</a>
+                <div class="google-recaptcha">
+                    <!-- إضافة reCAPTCHA هنا -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- السكربتات -->
+    <script src="js/particles.min.js"></script>
+    <script src="js/particles-config.js"></script>
+    <script src="js/language-switcher.js"></script>
+    <script src="js/app.js"></script>
+</body>
 </html>
