@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>لوحة تحكم المشرف | DZ USDT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #0f172a;
+      color: white;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .admin-login, .admin-panel {
+      max-width: 500px;
+      margin: 80px auto;
+      background-color: #1e293b;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.2);
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+    }
+    .hide {
+      display: none;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #334155;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    .control-btn {
+      background: #38bdf8;
+      color: white;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- تسجيل دخول المشرف -->
+  <div class="admin-login" id="adminLogin">
+    <h2>دخول المشرف</h2>
+    <input type="password" id="adminPassword" placeholder="كلمة السر">
+    <button onclick="checkPassword()">دخول</button>
+  </div>
+
+  <!-- لوحة التحكم -->
+  <div class="admin-panel hide" id="adminPanel">
+    <h2>لوحة تحكم المشرف</h2>
+    <p>عدد المستخدمين: <span id="userCount">0</span></p>
+    <p>إجمالي الرصيد: <span id="totalBalance">0</span> DZD</p>
+    
+    <h3>المستخدمون</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>الاسم</th>
+          <th>الإيميل</th>
+          <th>الرقم الإحصائي</th>
+          <th>الرصيد</th>
+          <th>تحكم</th>
+        </tr>
+      </thead>
+      <tbody id="usersTable">
+        <!-- سيتم ملء الجدول تلقائيًا -->
+      </tbody>
+    </table>
+    <br>
+    <a href="index.html" style="color: #60a5fa;">الرجوع للواجهة الرئيسية</a>
+  </div>
+
+  <script>
+    const adminPassword = "dzadmin2025"; // غيرها كما تشاء
+
+    function checkPassword() {
+      const pass = document.getElementById("adminPassword").value;
+      if (pass === adminPassword) {
+        document.getElementById("adminLogin").classList.add("hide");
+        document.getElementById("adminPanel").classList.remove("hide");
+        loadUsers();
+      } else {
+        alert("كلمة السر خاطئة");
+      }
+    }
+
+    // محاكاة بيانات المستخدمين
+    const users = [
+      { name: "أحمد", email: "ahmed@example.com", stat: "001", balance: 20000 },
+      { name: "ليلى", email: "layla@example.com", stat: "002", balance: 15000 },
+    ];
+
+    function loadUsers() {
+      let total = 0;
+      const table = document.getElementById("usersTable");
+      table.innerHTML = "";
+      users.forEach((user, index) => {
+        total += user.balance;
+        table.innerHTML += `
+          <tr>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.stat}</td>
+            <td>${user.balance}</td>
+            <td>
+              <button class="control-btn" onclick="deleteUser(${index})">حذف</button>
+            </td>
+          </tr>
+        `;
+      });
+      document.getElementById("userCount").innerText = users.length;
+      document.getElementById("totalBalance").innerText = total;
+    }
+
+    function deleteUser(index) {
+      if (confirm("هل تريد فعلاً حذف هذا المستخدم؟")) {
+        users.splice(index, 1);
+        loadUsers();
+      }
+    }
+  </script>
+</body>
+</html>
