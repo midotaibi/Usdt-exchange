@@ -3,252 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تبادل العملات الرقمية | منصتي</title>
+    <title>MOUAYED TAIBI - USDT Exchange</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* أنماط عامة */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+        
         :root {
-            --primary: #2a5f8a;
-            --secondary: #1e4a6e;
-            --accent: #4cc9f0;
-            --text: #333;
+            --primary: #1a1a2e; /* أزرق داكن */
+            --secondary: #16213e; /* أزرق داكن أعمق */
+            --accent: #D4AF37; /* ذهبي */
+            --dark: #0d0d1a;
             --light: #f8f9fa;
+            --success: #4caf50;
+            --danger: #f44336;
         }
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: #f5f7fa;
-            color: var(--text);
+        
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            transition: all 0.3s ease;
         }
-
-        /* شريط التنقل */
-        header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 15px 0;
-        }
-        .navbar {
+        
+        /* صفحة تسجيل الدخول */
+        .login-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+            overflow: hidden;
         }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary);
+        
+        .login-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop') no-repeat center/cover;
+            opacity: 0.1;
+            z-index: 0;
         }
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            margin-right: 20px;
-            font-weight: 500;
+        
+        .login-box {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(26, 26, 46, 0.9); /* خلفية زرقاء داكنة شفافة */
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin: auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--accent); /* إطار ذهبي */
         }
-
-        /* صندوق التبادل */
-        .exchange-container {
-            display: flex;
-            margin-top: 30px;
-            gap: 20px;
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
         }
-        .exchange-card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            padding: 25px;
-            flex: 1;
+        
+        .login-header img {
+            width: 80px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 5px var(--accent)); /* تأثير ذهبي */
         }
-        .exchange-card h2 {
-            color: var(--primary);
-            margin-bottom: 20px;
+        
+        .login-header h1 {
+            color: var(--accent); /* لون ذهبي */
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
-        .form-group {
-            margin-bottom: 20px;
+        
+        .login-header p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            line-height: 1.6;
         }
-        .form-group label {
+        
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .input-group label {
             display: block;
             margin-bottom: 8px;
+            color: rgba(255,255,255,0.8);
             font-weight: 500;
         }
-        .form-control {
+        
+        .input-group input {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-        .btn {
-            background: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
             color: white;
+        }
+        
+        .input-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+            outline: none;
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, var(--accent), #b38b2d);
+            color: var(--primary);
             border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            width: 100%;
-        }
-        .rate-info {
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background: var(--light);
-            border-radius: 6px;
-        }
-
-        /* قسم طرق الدفع */
-        .payment-methods {
-            margin-top: 30px;
-        }
-        .methods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            transition: all 0.3s;
             margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
-        .method-card {
-            background: white;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 15px;
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .login-footer {
             text-align: center;
-            cursor: pointer;
+            margin-top: 20px;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .login-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
             transition: all 0.3s;
         }
-        .method-card:hover {
-            border-color: var(--accent);
+        
+        .login-footer a:hover {
+            text-decoration: underline;
         }
-        .method-card img {
-            height: 40px;
-            margin-bottom: 10px;
+
+        /* بقية الأكواد (الواجهة بعد التسجيل) تبقى كما هي مع تعديل الألوان */
+        /* ... */
+        
+        /* زر الدعم الجانبي */
+        .support-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(45deg, var(--accent), #b38b2d);
+            color: var(--primary);
+            padding: 15px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .support-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+        
+        .support-btn i {
+            margin-left: 8px;
+            color: var(--primary);
+        }
+
+        /* تأثيرات إضافية للذهب */
+        .gold-text {
+            color: var(--accent);
+        }
+        
+        .gold-border {
+            border: 1px solid var(--accent);
+        }
+        
+        .gold-shadow {
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">منصتي للتبادل</div>
-                <div class="nav-links">
-                    <a href="#">الرئيسية</a>
-                    <a href="#">شراء</a>
-                    <a href="#">بيع</a>
-                    <a href="#">الأسعار</a>
-                    <a href="#">تسجيل الدخول</a>
+    <!-- صفحة تسجيل الدخول -->
+    <div class="login-container" id="login-container">
+        <div class="login-bg"></div>
+        <div class="login-box gold-shadow">
+            <div class="login-header">
+                <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT Logo">
+                <h1>مرحبًا بك في منصة <span class="gold-text">MOUAYED TAIBI</span></h1>
+                <p>منصة التبادل الآمنة للعملات الرقمية مع أفضل الأسعار وأعلى معدلات الأمان</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" required placeholder="أدخل اسم المستخدم">
                 </div>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container">
-        <div class="exchange-container">
-            <div class="exchange-card">
-                <h2><i class="fas fa-coins"></i> شراء Bitcoin</h2>
                 
-                <form id="buyForm">
-                    <div class="form-group">
-                        <label>اختر العملة:</label>
-                        <select class="form-control" id="currency">
-                            <option value="DZD">دينار جزائري (DZD)</option>
-                            <option value="USD">دولار أمريكي (USD)</option>
-                            <option value="EUR">يورو (EUR)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>المبلغ الذي تريد دفعه:</label>
-                        <input type="number" class="form-control" id="amount" placeholder="0.00">
-                    </div>
-
-                    <div class="form-group">
-                        <label>ستحصل على:</label>
-                        <input type="text" class="form-control" id="cryptoAmount" readonly placeholder="0.00000000 BTC">
-                    </div>
-
-                    <div class="rate-info">
-                        <p id="rateDisplay">1 BTC = 45,000 USD</p>
-                        <small>السعر يتم تحديثه كل دقيقة</small>
-                    </div>
-
-                    <button type="submit" class="btn">متابعة إلى الدفع</button>
-                </form>
-            </div>
-
-            <div class="exchange-card">
-                <h2><i class="fas fa-info-circle"></i> معلومات مهمة</h2>
-                <ul style="padding-right: 20px;">
-                    <li style="margin-bottom: 10px;">الحد الأدنى للشراء: 50 دولار</li>
-                    <li style="margin-bottom: 10px;">العمولة: 1% فقط</li>
-                    <li style="margin-bottom: 10px;">التوصيل خلال 5-15 دقيقة</li>
-                    <li style="margin-bottom: 10px;">دعم فني على مدار الساعة</li>
-                </ul>
-
-                <div class="payment-methods">
-                    <h3>طرق الدفع المتاحة:</h3>
-                    <div class="methods-grid">
-                        <div class="method-card">
-                            <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="Visa">
-                            <span>بطاقة فيزا</span>
-                        </div>
-                        <div class="method-card">
-                            <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Mastercard">
-                            <span>ماستركارد</span>
-                        </div>
-                        <div class="method-card">
-                            <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png" alt="PayPal">
-                            <span>PayPal</span>
-                        </div>
-                        <div class="method-card">
-                            <img src="https://cdn-icons-png.flaticon.com/512/825/825476.png" alt="Bank Transfer">
-                            <span>حوالة بنكية</span>
-                        </div>
-                    </div>
+                <div class="input-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" required placeholder="أدخل كلمة المرور">
                 </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>ليس لديك حساب؟ <a href="#">سجل الآن</a></p>
+                <p>نسيت كلمة المرور؟ <a href="#">استعاده</a></p>
             </div>
         </div>
-    </main>
-
+    </div>
+    
+    <!-- بقية الأكواد (الواجهة بعد التسجيل) تبقى كما هي -->
+    <!-- ... -->
+    
     <script>
-        // محاكاة سعر الصرف
-        function updateExchangeRate() {
-            const currency = document.getElementById('currency').value;
-            let rate;
-            
-            if (currency === 'DZD') rate = '6,000,000';
-            else if (currency === 'EUR') rate = '40,000';
-            else rate = '45,000';
-            
-            document.getElementById('rateDisplay').textContent = `1 BTC = ${rate} ${currency}`;
-        }
-
-        // حساب المبلغ المستلم
-        document.getElementById('amount').addEventListener('input', function() {
-            const amount = parseFloat(this.value) || 0;
-            const currency = document.getElementById('currency').value;
-            let rate;
-            
-            if (currency === 'DZD') rate = 6000000;
-            else if (currency === 'EUR') rate = 40000;
-            else rate = 45000;
-            
-            const btc = (amount / rate).toFixed(8);
-            document.getElementById('cryptoAmount').value = btc + ' BTC';
-        });
-
-        // تحديث السعر عند تغيير العملة
-        document.getElementById('currency').addEventListener('change', updateExchangeRate);
-
-        // إرسال النموذج
-        document.getElementById('buyForm').addEventListener('submit', function(e) {
+        // تسجيل الدخول (بدون reCAPTCHA)
+        document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('سيتم توجيهك إلى صفحة الدفع لإكمال العملية');
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if(username && password) {
+                document.getElementById('login-container').style.display = 'none';
+                // document.getElementById('dashboard').style.display = 'block';
+                alert('تم تسجيل الدخول بنجاح! سيتم تحويلك للوحة التحكم.');
+                // في التطبيق الحقيقي، هنا يتم التوجيه للوحة التحكم
+            } else {
+                alert('الرجاء إدخال اسم المستخدم وكلمة المرور');
+            }
         });
-
-        // تحديث السعر أول مرة
-        updateExchangeRate();
+        
+        // يمكنك إضافة بقية الأكواد JavaScript هنا
     </script>
 </body>
 </html>
