@@ -1,691 +1,156 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USDT Pro | تبادل آمن للعملات الرقمية</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #2a4365;
-            --secondary: #38a169;
-            --accent: #9f7aea;
-            --dark: #1a202c;
-            --light: #f7fafc;
-            --algeria-red: #d21034;
-            --algeria-green: #007a3d;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%);
-            color: var(--light);
-            min-height: 100vh;
-            overflow-x: hidden;
-            touch-action: pan-y;
-        }
-
-        /* تأثير التراكب */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: -1;
-        }
-
-        /* شريط التنقل */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: rgba(26, 32, 44, 0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo img {
-            height: 40px;
-        }
-
-        .logo-text {
-            font-weight: bold;
-            font-size: 1.5rem;
-            background: linear-gradient(to right, var(--accent), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* قائمة الهاتف */
-        .menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .menu-btn span {
-            width: 25px;
-            height: 3px;
-            background: var(--light);
-            transition: all 0.3s;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 70%;
-            height: 100vh;
-            background: var(--dark);
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.5s ease;
-            z-index: 1000;
-            padding: 2rem;
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .language-selector {
-            display: flex;
-            gap: 10px;
-            margin-top: 2rem;
-        }
-
-        .lang-btn {
-            padding: 5px 10px;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        .lang-btn.active {
-            background: var(--secondary);
-        }
-
-        /* المحتوى الرئيسي */
-        .container {
-            padding-top: 80px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* خلفية العلامات المائية */
-        .watermarks {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            opacity: 0.1;
-            z-index: -1;
-        }
-
-        .watermarks img {
-            width: 100px;
-            margin: 20px;
-            filter: grayscale(100%) brightness(2);
-        }
-
-        /* بطاقة التبادل */
-        .exchange-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 1rem 0;
-        }
-
-        .card-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-header h2 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, var(--accent), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .card-header p {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* حقول الإدخال */
-        .input-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(159, 122, 234, 0.3);
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .input-with-icon {
-            padding-left: 45px !important;
-        }
-
-        /* أزرار العملات */
-        .currency-selector {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .currency-btn {
-            flex: 1;
-            padding: 10px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .currency-btn img {
-            width: 20px;
-        }
-
-        .currency-btn.active {
-            background: var(--secondary);
-        }
-
-        /* زر التبادل */
-        .exchange-btn {
-            width: 100%;
-            padding: 15px;
-            border-radius: 8px;
-            background: linear-gradient(to right, var(--accent), var(--secondary));
-            border: none;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-        }
-
-        .exchange-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* شعارات المحافظ */
-        .wallets-section {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .wallets-section h3 {
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .wallets-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .wallet-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 10px;
-            width: 70px;
-            transition: all 0.3s;
-        }
-
-        .wallet-item img {
-            width: 100%;
-            filter: grayscale(30%);
-            transition: all 0.3s;
-        }
-
-        .wallet-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .wallet-item:hover img {
-            filter: grayscale(0%);
-        }
-
-        /* علم الجزائر */
-        .algeria-flag {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 15px;
-            border-radius: 30px;
-        }
-
-        .algeria-flag img {
-            width: 30px;
-        }
-
-        /* تذييل الصفحة */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            background: rgba(0, 0, 0, 0.3);
-            width: 100%;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 1rem 0;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        .creator {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* تأثيرات الحركة */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        /* صفحة تسجيل الدخول */
-        .login-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login-container.active {
-            display: flex;
-        }
-
-        .login-card {
-            background: var(--dark);
-            border-radius: 15px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .close-login {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .login-title {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .login-title h2 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, var(--accent), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .social-login {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 1.5rem 0;
-        }
-
-        .social-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-3px);
-            background: var(--primary);
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 1.5rem 0;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .divider::before, .divider::after {
-            content: "";
-            flex: 1;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .divider::before {
-            margin-right: 10px;
-        }
-
-        .divider::after {
-            margin-left: 10px;
-        }
-
-        .login-footer {
-            text-align: center;
-            margin-top: 1.5rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .login-footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .menu-btn {
-                display: flex;
-            }
-            
-            .navbar .nav-links {
-                display: none;
-            }
-            
-            .exchange-card {
-                width: 95%;
-                padding: 1.5rem;
-            }
-            
-            .watermarks img {
-                width: 70px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DZ USDT - تسجيل الدخول</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://chat.openai.com/_assets/file-000000008e8461f7a3782db7c7eaed5d/A_digital_vector_logo_design_for_%22DZ_USDT%22_platfor.png">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom, #eef2f3, #d9e2ec);
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    .container {
+      max-width: 420px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      border-top: 6px solid #27ae60;
+      position: relative;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .logo img {
+      width: 110px;
+      animation: popIn 0.5s ease-in-out;
+    }
+    @keyframes popIn {
+      0% {transform: scale(0.5); opacity: 0;}
+      100% {transform: scale(1); opacity: 1;}
+    }
+    h2 {
+      text-align: center;
+      color: #27ae60;
+    }
+    .intro {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: #555;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      color: #333;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #219150;
+    }
+    .link {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .link a {
+      color: #27ae60;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .link a:hover {
+      text-decoration: underline;
+    }
+    .contact {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 13px;
+      color: #555;
+    }
+    .contact a {
+      color: #27ae60;
+      text-decoration: none;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 25px;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-    <!-- تأثير التراكب -->
-    <div class="overlay"></div>
 
-    <!-- شريط التنقل -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT Logo">
-            <span class="logo-text">USDT Pro</span>
-        </div>
-        
-        <div class="menu-btn" id="menuBtn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        
-        <div class="mobile-menu" id="mobileMenu">
-            <div class="close-btn" id="closeMenu">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="nav-links">
-                <a href="#">الرئيسية</a>
-                <a href="#">الأسعار</a>
-                <a href="#">التحويلات</a>
-                <a href="#">المحفظة</a>
-                <a href="#" id="showLogin">تسجيل الدخول</a>
-                
-                <div class="language-selector">
-                    <button class="lang-btn active">العربية</button>
-                    <button class="lang-btn">English</button>
-                    <button class="lang-btn">Français</button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- المحتوى الرئيسي -->
-    <div class="container">
-        <!-- علامات مائية للكريبتو -->
-        <div class="watermarks">
-            <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin" class="floating">
-            <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum">
-            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" class="floating" style="animation-delay: 0.5s;">
-            <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="BNB">
-            <img src="https://cryptologos.cc/logos/solana-sol-logo.png" alt="Solana" class="floating" style="animation-delay: 1s;">
-        </div>
-        
-        <!-- بطاقة التبادل -->
-        <div class="exchange-card">
-            <div class="card-header">
-                <h2>تبادل USDT بسهولة</h2>
-                <p>أفضل الأسعار وأسرع المعاملات</p>
-            </div>
-            
-            <div class="input-group">
-                <label for="sendAmount">المبلغ المراد بيعه</label>
-                <div style="position: relative;">
-                    <i class="fas fa-money-bill-wave input-icon"></i>
-                    <input type="number" id="sendAmount" class="input-field input-with-icon" placeholder="مثال: 1000">
-                </div>
-                <div class="currency-selector">
-                    <button class="currency-btn active">
-                        <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT">
-                        USDT
-                    </button>
-                    <button class="currency-btn">
-                        <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="BTC">
-                        BTC
-                    </button>
-                </div>
-            </div>
-            
-            <div class="input-group">
-                <label for="receiveAmount">المبلغ الذي ستحصل عليه</label>
-                <div style="position: relative;">
-                    <i class="fas fa-coins input-icon"></i>
-                    <input type="number" id="receiveAmount" class="input-field input-with-icon" placeholder="سيتم حسابه تلقائيًا" readonly>
-                </div>
-                <div class="currency-selector">
-                    <button class="currency-btn active">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Algeria.svg" alt="DZD">
-                        DZD
-                    </button>
-                    <button class="currency-btn">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="USD">
-                        USD
-                    </button>
-                </div>
-            </div>
-            
-            <button class="exchange-btn">ابدأ التبادل الآن</button>
-            
-            <div class="wallets-section">
-                <h3>نقبل التحويل من المحافظ التالية:</h3>
-                <div class="wallets-grid">
-                    <div class="wallet-item">
-                        <img src="https://cryptologos.cc/logos/bnb-bnb-logo.png" alt="Binance">
-                    </div>
-                    <div class="wallet-item">
-                        <img src="https://cryptologos.cc/logos/trust-wallet-twt-logo.png" alt="Trust Wallet">
-                    </div>
-                    <div class="wallet-item">
-                        <img src="https://cryptologos.cc/logos/metamask-mask-logo.png" alt="MetaMask">
-                    </div>
-                    <div class="wallet-item">
-                        <img src="https://cryptologos.cc/logos/exodus-exo-logo.png" alt="Exodus">
-                    </div>
-                    <div class="wallet-item">
-                        <img src="https://cryptologos.cc/logos/coinbase-wallet-logo.png" alt="Coinbase Wallet">
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- علم الجزائر -->
-        <div class="algeria-flag">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Flag_of_Algeria.svg" alt="Algeria Flag">
-            <span>نحن نفتخر بخدمة الجزائر</span>
-        </div>
+  <div class="container">
+    <div class="logo">
+      <img src="https://chat.openai.com/_assets/file-000000008e8461f7a3782db7c7eaed5d/A_digital_vector_logo_design_for_%22DZ_USDT%22_platfor.png" alt="DZ USDT">
     </div>
-    
-    <!-- تذييل الصفحة -->
-    <footer>
-        <div class="footer-links">
-            <a href="#">الشروط والأحكام</a>
-            <a href="#">سياسة الخصوصية</a>
-            <a href="#">الدعم الفني</a>
-            <a href="#">الأسئلة الشائعة</a>
-        </div>
-        
-        <div class="creator">
-            صنع بكل فخر بواسطة <strong>TAIBI MOUYAD</strong><br>
-            للدعم: <a href="mailto:mouydtaibi2@gmail.com">mouydtaibi2@gmail.com</a> | 
-            <a href="https://t.me/Mido_taibi" target="_blank">Telegram</a> | 
-            <a href="https://www.instagram.com/railux.0" target="_blank">Instagram</a>
-        </div>
-    </footer>
-    
-    <!-- صفحة تسجيل الدخول -->
-    <div class="login-container" id="loginContainer">
-        <div class="login-card">
-            <div class="close-login" id="closeLogin">
-                <i class="fas fa-times"></i>
-            </div>
-            
-            <div class="login-title">
-                <h2>مرحبًا بعودتك!</h2>
-                <p>سجل الدخول للوصول إلى حسابك</p>
-            </div>
-            
-            <div class="input-group">
-                <label for="loginEmail">البريد الإلكتروني</label>
-                <div style="position: relative;">
-                    <i class="fas fa-envelope input-icon"></i>
-                    <input type="email" id="loginEmail" class="input-field input-with-icon" placeholder="أدخل 
+    <h2>مرحبًا بك في DZ USDT</h2>
+    <p class="intro">
+      > مرحبًا بك في منصة DZ USDT، منصتك الآمنة والموثوقة لبيع وشراء عملة USDT في الجزائر بسهولة وسرعة.
+      منصة آمنة وموثوقة لتحويل العملات الرقمية بالدينار الجزائري
+    </p>
+
+    <form>
+      <label>رقم الحساب أو البريد الإلكتروني</label>
+      <input type="text" placeholder="example@dzusdt.com">
+      
+      <label>كلمة المرور</label>
+      <input type="password" placeholder="********">
+
+      <!-- reCAPTCHA -->
+      <div style="margin-top: 20px; text-align:center;">
+        <img src="https://www.google.com/recaptcha/about/images/hero-recaptcha-ui.png" width="250">
+      </div>
+
+      <button type="submit">تسجيل الدخول</button>
+
+      <div class="link">
+        <a href="#">نسيت كلمة السر؟</a><br>
+        <a href="#">ليس لديك حساب؟ أنشئ حساب جديد</a>
+      </div>
+    </form>
+
+    <div class="contact">
+      تواصل معنا:<br>
+      <a href="https://www.instagram.com/railux.0?igsh=Zmo2bTJrbTZqMXA=" target="_blank">إنستغرام</a> | 
+      <a href="mailto:mouydtaibi2@gmail.com">إيميل</a> | 
+      <a href="https://t.me/Mido_taibi" target="_blank">تيليغرام</a>
+    </div>
+
+    <div class="footer">
+      صُنع بكل فخر من قبلي - <strong>TAIBI MOUYAD</strong>
+    </div>
+  </div>
+
+</body>
+</html>
